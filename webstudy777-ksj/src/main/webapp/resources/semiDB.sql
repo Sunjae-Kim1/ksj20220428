@@ -41,14 +41,15 @@ CREATE TABLE screen(
 	screenNo NUMBER PRIMARY KEY,
 	seatNo NUMBER NOT NULL,
 	movieNo NUMBER NOT NULL,
-	showTime TIME ,
- 	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
-	CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
+	showTime Date not null
 )
- 
+ -- CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
+	-- CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
+drop table screen;
 
+insert into screen (screenNo , seatNo , movieNo , showTime) values (1 , 1 , 1 , TO_CHAR(SYSDATE, 'HH24:MI:SS')) FROM DUAL;
 
-
+select * from screen;
 
 
 
