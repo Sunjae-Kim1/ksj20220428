@@ -41,7 +41,7 @@ CREATE TABLE screen(
 	screenNo NUMBER PRIMARY KEY,
 	seatNo NUMBER NOT NULL,
 	movieNo NUMBER NOT NULL,
-	showTime TIME ,
+
  	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
 	CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
 )
