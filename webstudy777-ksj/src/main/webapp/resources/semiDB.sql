@@ -63,7 +63,8 @@ CREATE TABLE booking(
 	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
 )
 
-
+--------------------------------------------
+--INSERT DATA 
 
 
 
