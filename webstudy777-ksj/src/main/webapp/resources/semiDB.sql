@@ -64,7 +64,7 @@ CREATE TABLE booking(
 )
 
 --------------------------------------------
---INSERT DATA 
+--INSERT DATA 2 
 
 
 
