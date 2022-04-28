@@ -46,27 +46,20 @@ CREATE TABLE screen(
 	screenNo NUMBER PRIMARY KEY,
 	seatNo NUMBER NOT NULL,
 	movieNo NUMBER NOT NULL,
-<<<<<<< HEAD
-	showTime Date not null
-=======
 	showTime DATE NOT NULL,
  	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
 	CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
->>>>>>> refs/remotes/origin/main
 )
-<<<<<<< HEAD
- -- CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
-	-- CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
 drop table screen;
-=======
+
 SELECT TO_CHAR(showTime, 'HH:MI:SS') FROM screen;
 INSERT INTO screen(screenNo, seatNo, movieNo, showTime) VALUES(1, 1, 3, SYSDATE);
 DELETE FROM screen;
->>>>>>> refs/remotes/origin/main
 
-<<<<<<< HEAD
+
+
 insert into screen (screenNo , seatNo , movieNo , showTime) values (1 , 1 , 1 , TO_CHAR(SYSDATE, 'HH24:MI:SS')) FROM DUAL;
-=======
+
 CREATE TABLE booking(
 	bookNo NUMBER PRIMARY KEY,
 	screenNo NUMBER NOT NULL,
@@ -75,15 +68,10 @@ CREATE TABLE booking(
 	CONSTRAINT fk_screen FOREIGN KEY (screenNo) REFERENCES screen(screenNo),
 	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
 )
->>>>>>> refs/remotes/origin/main
 
-<<<<<<< HEAD
 select * from screen;
-=======
---------------------------------------------
---INSERT DATA 
 
->>>>>>> refs/remotes/origin/main
+
 
 
 
