@@ -18,10 +18,9 @@ public class MemberVO implements Serializable{
 		this.age = age;
 		this.password = password;
 	}	
-	public MemberVO(String id, String password, String name, int age) {
+	public MemberVO(String id,String name, int age) {
 		super();
 		this.id = id;
-		this.password = password;
 		this.name = name;
 		this.age = age;
 	}
