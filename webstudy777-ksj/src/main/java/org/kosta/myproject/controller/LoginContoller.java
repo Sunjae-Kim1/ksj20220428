@@ -2,7 +2,6 @@ package org.kosta.myproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.kosta.myproject.model.MemberDAO;
 import org.kosta.myproject.model.MemberVO;
@@ -19,8 +18,7 @@ public class LoginContoller implements Controller {
 		}else {
 			
 		}
-		HttpSession session = 
-		return viewName;
+		return null;
 	}
 
 }
