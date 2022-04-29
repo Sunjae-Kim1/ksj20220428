@@ -71,7 +71,17 @@ CREATE TABLE booking(
 
 select * from screen;
 
+<<<<<<< HEAD
 
+=======
+
+--------------------------------------------
+--INSERT DATA 2 
+
+--------------------------------------------
+--INSERT DATA 2 
+
+>>>>>>> branch 'main' of https://github.com/Sunjae-Kim1/ksj20220428.git
 
 
 
