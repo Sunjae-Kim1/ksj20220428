@@ -22,6 +22,7 @@
 	<div class="row">
 	<div class="col-sm-8 offset-sm-2" align="right">
 			<%-- 각 컨트롤러에서 request에 할당한 url을 이용해 import 한다  --%>
+
 			<%-- <c:import url="${requestScope.url}"/>  --%>
 	</div>	
 	</div><%-- 메인화면 div끝 --%>	

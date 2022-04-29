@@ -1,11 +1,18 @@
+DROP TABLE REVIEW;
+DROP TABLE BOOKING;
+DROP TABLE SCREEN;
+DROP TABLE SEAT;
+
 DROP TABLE movie;
+DROP TABLE member;
+
  
  CREATE TABLE movie(
  	movieNo NUMBER PRIMARY KEY,
- 	movieName VARCHAR2(100) NOT NULL;
+ 	movieName VARCHAR2(100) NOT NULL,
+ 	content CLOB NOT NULL,
  	openDate DATE NOT NULL,
  	ageLimit NUMBER NOT NULL,
- 	content VARCHAR2(100) NOT NULL,
  	director VARCHAR2(100) NOT NULL,
  	produceYear DATE NOT NULL
  )
@@ -26,7 +33,7 @@ CREATE TABLE member(
  	id VARCHAR2(100),
  	movieNo NUMBER,
  	star NUMBER NOT NULL,
- 	review VARCHAR2(100),
+ 	review CLOB,
  	CONSTRAINT fk_member_movie PRIMARY  KEY (id, movieNo)
  )
 DROP TABLE REVIEW;
@@ -43,7 +50,7 @@ DELETE SEAT;
 INSERT INTO seat(seatNo, xSeat, ySeat) VALUES(1, 2, 65);
 SELECT CHR(ySeat)  FROM SEAT;
  SELECT*FROM SEAT;
-DROP TABLE screen;
+
 --------------------------
 CREATE TABLE screen(
 	screenNo NUMBER PRIMARY KEY,
@@ -66,10 +73,7 @@ CREATE TABLE booking(
 	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
 )
 
-DROP TABLE REVIEW;
-DROP TABLE BOOKING;
-DROP TABLE SCREEN;
-DROP TABLE SEAT;
+
 
 
 
