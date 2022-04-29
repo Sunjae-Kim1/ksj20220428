@@ -2,11 +2,7 @@ DROP TABLE movie;
  
  CREATE TABLE movie(
  	movieNo NUMBER PRIMARY KEY,
-<<<<<<< HEAD
  	movieName VARCHAR2(100) NOT NULL,
-=======
- 	movieName VARCHAR2(100) NOT NULL;
->>>>>>> branch 'main' of https://github.com/Sunjae-Kim1/ksj20220428.git
  	openDate DATE NOT NULL,
  	ageLimit NUMBER NOT NULL,
  	content VARCHAR2(100) NOT NULL,
