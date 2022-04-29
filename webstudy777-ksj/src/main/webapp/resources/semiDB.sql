@@ -5,26 +5,31 @@ DROP TABLE SEAT;
 
 DROP TABLE movie;
 DROP TABLE member;
-
- 
- CREATE TABLE movie(
- 	movieNo NUMBER PRIMARY KEY,
- 	movieName VARCHAR2(100) NOT NULL,
- 	content CLOB NOT NULL,
- 	openDate DATE NOT NULL,
- 	ageLimit NUMBER NOT NULL,
- 	director VARCHAR2(100) NOT NULL,
- 	produceYear DATE NOT NULL
- )
-
-DROP TABLE board;
-DROP TABLE member;
+-------
 
 CREATE TABLE member(
 	id VARCHAR2(100) PRIMARY KEY,
 	password VARCHAR2(100) NOT NULL,
 	name VARCHAR2(100) NOT NULL,
 	age NUMBER NOT NULL
+)
+ 
+CREATE TABLE film(
+ 	filmNo NUMBER PRIMARY KEY,
+ 	filmName VARCHAR2(100) NOT NULL,
+ 	content CLOB NOT NULL,
+ 	openDate DATE NOT NULL,
+ 	ageLimit NUMBER NOT NULL,
+ 	director VARCHAR2(100) NOT NULL,
+ 	produceYear DATE NOT NULL
+ )
+ 
+ DROP TABLE seat;
+ 
+CREATE  TABLE seat(
+	seatNo NUMBER PRIMARY KEY,
+	xSeat NUMBER NOT NULL,
+	ySeat NUMBER NOT NULL
 )
 
  DROP TABLE review;
@@ -36,41 +41,25 @@ CREATE TABLE member(
  	review CLOB,
  	CONSTRAINT fk_member_movie PRIMARY  KEY (id, movieNo)
  )
-DROP TABLE REVIEW;
-SELECT * FROM review;
 
-DROP TABLE seat;
---------------------
-CREATE  TABLE seat(
-	seatNo NUMBER PRIMARY KEY,
-	xSeat NUMBER NOT NULL,
-	ySeat NUMBER NOT NULL
-)
-DELETE SEAT;
-INSERT INTO seat(seatNo, xSeat, ySeat) VALUES(1, 2, 65);
-SELECT CHR(ySeat)  FROM SEAT;
- SELECT*FROM SEAT;
+DROP TABLE timetable;
 
---------------------------
-CREATE TABLE screen(
-	screenNo NUMBER PRIMARY KEY,
-	seatNo NUMBER NOT NULL,
-	movieNo NUMBER NOT NULL,
+CREATE TABLE timetable(
+	timetableNo NUMBER PRIMARY KEY,
+	filmNo NUMBER NOT NULL,
 	showTime DATE NOT NULL,
- 	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo),
-	CONSTRAINT fk_movie FOREIGN KEY (movieNo) REFERENCES movie(movieNo)
+	CONSTRAINT fk_film FOREIGN KEY (filmNo) REFERENCES film(filmNo)
 )
-SELECT TO_CHAR(showTime, 'HH:MI:SS') FROM screen;
-INSERT INTO screen(screenNo, seatNo, movieNo, showTime) VALUES(1, 1, 3, SYSDATE);
-DELETE FROM screen;
 
 CREATE TABLE booking(
 	bookNo NUMBER PRIMARY KEY,
-	screenNo NUMBER NOT NULL,
+	timetableNo NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
+	seatNo NUMBER NOT NULL,
 	bookTime DATE NOT NULL,
-	CONSTRAINT fk_screen FOREIGN KEY (screenNo) REFERENCES screen(screenNo),
-	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
+	CONSTRAINT fk_timetable FOREIGN KEY (timetableNo) REFERENCES timetable(timetableNo),
+	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id),
+	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo)
 )
 
 
