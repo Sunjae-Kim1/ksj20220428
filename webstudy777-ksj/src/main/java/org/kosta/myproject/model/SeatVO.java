@@ -3,14 +3,14 @@ package org.kosta.myproject.model;
 public class SeatVO {
 	private int seatNo;
 	private int Xseat;
-	private int Yseat;
+	private char Yseat;
 	public SeatVO() {
 		super();
 	}
-	public SeatVO(int seatNo, int Xseat, int Yseat) {
+	public SeatVO(int seatNo, int xseat, char Yseat) {
 		super();
 		this.seatNo = seatNo;
-		this.Xseat = Xseat;
+		Xseat = xseat;
 		this.Yseat = Yseat;
 	}
 	public int getSeatNo() {
@@ -22,13 +22,13 @@ public class SeatVO {
 	public int getXseat() {
 		return Xseat;
 	}
-	public void setXseat(int Xseat) {
-		this.Xseat = Xseat;
+	public void setXseat(int xseat) {
+		Xseat = xseat;
 	}
-	public int getYseat() {
+	public char getYseat() {
 		return Yseat;
 	}
-	public void setYseat(int Yseat) {
+	public void setYseat(char Yseat) {
 		this.Yseat = Yseat;
 	}
 	@Override
