@@ -11,20 +11,13 @@ public class MemberVO implements Serializable{
 	public MemberVO() {
 		super();
 	}
-	public MemberVO(String id, String name, int age, String password) {
+	public MemberVO(String id, String password, String name , int age) {
 		super();
 		this.id = id;
+		this.password = password;
 		this.name = name;
 		this.age = age;
-		this.password = password;
 	}	
-	public MemberVO(String id, String password, String name, int age) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.age = age;
-	}
 	public String getId() {
 		return id;
 	}
