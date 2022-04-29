@@ -2,6 +2,7 @@ DROP TABLE movie;
  
  CREATE TABLE movie(
  	movieNo NUMBER PRIMARY KEY,
+ 	movieName VARCHAR2(100) NOT NULL,
  	openDate DATE NOT NULL,
  	ageLimit NUMBER NOT NULL,
  	content VARCHAR2(100) NOT NULL,
@@ -28,20 +29,22 @@ CREATE TABLE member(
  	review VARCHAR2(100),
  	CONSTRAINT fk_member_movie PRIMARY  KEY (id, movieNo)
  )
-
+DROP TABLE REVIEW;
 SELECT * FROM review;
 
 DROP TABLE seat;
-
+--------------------
 CREATE  TABLE seat(
 	seatNo NUMBER PRIMARY KEY,
 	xSeat NUMBER NOT NULL,
-	ySeat CHAR NOT NULL
+	ySeat NUMBER NOT NULL
 )
-INSERT INTO seat(seatNo, xSeat, ySeat) VALUES(1, 2, 'A');
-
+DELETE SEAT;
+INSERT INTO seat(seatNo, xSeat, ySeat) VALUES(1, 2, 65);
+SELECT CHR(ySeat)  FROM SEAT;
+ SELECT*FROM SEAT;
 DROP TABLE screen;
-
+--------------------------
 CREATE TABLE screen(
 	screenNo NUMBER PRIMARY KEY,
 	seatNo NUMBER NOT NULL,
@@ -63,10 +66,10 @@ CREATE TABLE booking(
 	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
 )
 
---------------------------------------------
---INSERT DATA 2 
-
-
+DROP TABLE REVIEW;
+DROP TABLE BOOKING;
+DROP TABLE SCREEN;
+DROP TABLE SEAT;
 
 
 
