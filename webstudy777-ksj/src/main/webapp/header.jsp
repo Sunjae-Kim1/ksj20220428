@@ -6,6 +6,12 @@
 			현 header.jsp는 layout.jsp 에서 import 하는 대상 , 상단부에 배치될 예정 
 			비로그인 상태에서는 로그인 폼을 제공 , 로그인 상태에서는 홈, 글쓰기 , 회원명, 로그아웃 링크를 제공 
  --%>
+ <div class ="col-sm-2">
+ <a href="MovieListController.do">
+			<img src ="images/kostaCinema.png" width="250" height="130">
+		</a>
+</div>
+<div class= "col-sm-8" align="right">
 <c:choose>
 	<c:when test="${sessionScope.mvo==null}">
 		<form method="post" action="LoginController.do">
@@ -29,7 +35,7 @@
 		</script>
 	</c:otherwise>
 </c:choose>
-
+</div>
 
 
 
