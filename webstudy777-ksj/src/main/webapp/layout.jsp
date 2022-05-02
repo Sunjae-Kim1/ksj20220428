@@ -16,7 +16,10 @@
 <body>
 <div class="container-fluid">
 	<div class="row header">
-		<div class="col-sm-8 offset-sm-2" align="right">
+		<div class = "col-sm-3" align = "left">
+			<a href = "layout.jsp"><img src = "images/kostaCinema.png"></a>
+		</div>
+		<div class="col-sm-6 offset-sm-3" align="right">
 			<c:import url="header.jsp"/>
 		</div>
 	</div><%-- 상단부 헤더 div 끝 --%>
