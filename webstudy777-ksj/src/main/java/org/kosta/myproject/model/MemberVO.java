@@ -52,4 +52,4 @@ public class MemberVO implements Serializable{
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", age=" + age + "]";
 	}
-}
+}  

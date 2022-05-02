@@ -54,4 +54,4 @@ public class BookingVO {
 		return "BookingVO [bookNo=" + bookNo + ", bookTime=" + bookTime + ", seatVO=" + seatVO + ", memberVO="
 				+ memberVO + ", timeTableVO=" + timeTableVO + "]";
 	}
-}
+}  

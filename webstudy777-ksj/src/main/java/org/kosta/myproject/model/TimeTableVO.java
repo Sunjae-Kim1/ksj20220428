@@ -37,4 +37,4 @@ public class TimeTableVO {
 	public String toString() {
 		return "TimeTableVO [timeTableNO=" + timeTableNO + ", showTime=" + showTime + ", filmVO=" + filmVO + "]";
 	}
-}
+}  

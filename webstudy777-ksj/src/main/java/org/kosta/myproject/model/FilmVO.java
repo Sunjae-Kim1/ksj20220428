@@ -71,4 +71,4 @@ public class FilmVO {
 		return "FilmVO [filmNO=" + filmNO + ", filmName=" + filmName + ", content=" + content + ", openDate=" + openDate
 				+ ", ageLimit=" + ageLimit + ", director=" + director + ", produceYear=" + produceYear + "]";
 	}
-}
+}  
