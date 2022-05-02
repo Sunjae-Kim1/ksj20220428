@@ -48,4 +48,24 @@ public class MemberDAO {
 		}
 		return vo;
 	}
+	public boolean checkId(String id) throws SQLException {
+		boolean result = false;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs =null;
+		try {
+			con =dataSource.getConnection();
+			String sql ="SELECT COUNT(*) FROM mvc_member WHERE id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			//존재하면 true, 존재하지 않으면 false
+			if(rs.next()&&rs.getInt(1)==1)
+				result=true;
+		}finally {
+			closeAll(pstmt, con, rs);
+		}
+		return result;
+		
+	}
 }
