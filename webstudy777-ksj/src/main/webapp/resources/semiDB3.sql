@@ -1,9 +1,9 @@
 DROP TABLE REVIEW;
 DROP TABLE BOOKING;
-DROP TABLE SCREEN;
+DROP TABLE timetable;
 DROP TABLE SEAT;
 
-DROP TABLE movie;
+DROP TABLE film;
 DROP TABLE member;
 -------
 
@@ -13,7 +13,11 @@ CREATE TABLE member(
 	name VARCHAR2(100) NOT NULL,
 	age NUMBER NOT NULL
 )
- 
+select * from member;
+insert into member(id, password, name,age) values('java','a','아이유',28);
+insert into member(id, password, name,age) values('spring','a','박보검',28);
+insert into member(id, password, name,age) values('kosta','a','정동원',15);
+
 CREATE TABLE film(
  	filmNo NUMBER PRIMARY KEY,
  	filmName VARCHAR2(100) NOT NULL,
@@ -23,6 +27,11 @@ CREATE TABLE film(
  	director VARCHAR2(100) NOT NULL,
  	produceYear DATE NOT NULL
  )
+ --재확인용--
+ select * from film;
+ insert into film(filmNo, filmName, content,openDate,ageLimit,director,produceYear) values(1,'세 얼간이','인도풍 뮤지컬 영화',TO_DATE('2022.05.02','yyyy.mm.dd'),12,'라지쿠마르 히라니',TO_DATE('2009.12.25','yyyy.mm.dd'));
+ insert into film(filmNo, filmName, content,openDate,ageLimit,director,produceYear) values(2,'호빗 ','난장이가 용잡으러 가는 영화',TO_DATE('2022.05.03','yyyy.mm.dd'),12,'피터 잭슨',TO_DATE('2013.12.12','yyyy.mm.dd'));
+ insert into film(filmNo, filmName, content,openDate,ageLimit,director,produceYear) values(3,'닥터 스트레인지','인도풍 뮤지컬 영화',TO_DATE('2022.05.01','yyyy.mm.dd'),12,'스콧 데릭슨',TO_DATE('2016.10.25','yyyy.mm.dd'));
  
  DROP TABLE seat;
  
@@ -61,7 +70,7 @@ CREATE TABLE booking(
 	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id),
 	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo)
 )
-
+SELECT * FROM film WHERE filmNo = 1
 
 
 
