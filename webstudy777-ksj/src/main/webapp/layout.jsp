@@ -14,19 +14,16 @@
 <title>home</title>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" >
+<br><br>
 	<div class="row header">
-		<div class = "col-sm-3" align = "left">
-			<a href = "layout.jsp"><img src = "images/kostaCinema.png"></a>
-		</div>
-		<div class="col-sm-6 offset-sm-3" align="right">
 			<c:import url="header.jsp"/>
-		</div>
 	</div><%-- 상단부 헤더 div 끝 --%>
 	<div class="row">
 	<div class="col-sm-8 offset-sm-2" align="right">
 			<%-- 각 컨트롤러에서 request에 할당한 url을 이용해 import 한다  --%>
-			<c:import url="${requestScope.url}"/>
+
+			<%-- <c:import url="${requestScope.url}"/>  --%>
 	</div>	
 	</div><%-- 메인화면 div끝 --%>	
 </div>

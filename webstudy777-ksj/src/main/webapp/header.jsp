@@ -15,23 +15,17 @@
 <c:choose>
 	<c:when test="${sessionScope.mvo==null}">
 		<form method="post" action="LoginController.do">
-			<input type="text" name="id" placeholder="아이디" required="required" size="12">
-			<input type="password" name="password"placeholder="비밀번호" size="12">
+			<input type="text" name="id" placeholder="아이디" required="required"
+				size="12"> <input type="password" name="password"
+				placeholder="비밀번호" size="12">
 			<button type="submit">로그인</button>
 		</form>
-		<a href="javascript:register()">회원가입</a>
-		<form id="registerForm" method="post" action="registerController.do"></form>
-		<script>
-		function register() {
-				document.getElementById("registerForm").submit();
-		}
-		</script>
 	</c:when>
 	<c:otherwise>
+		<a href="ListController.do">홈</a>&nbsp;&nbsp;
 		${sessionScope.mvo.name}님 &nbsp;&nbsp;
 		<a href="javascript:logout()">로그아웃</a>
 		<form id="logoutForm" method="post" action="LogoutController.do"></form>
-		
 		<script>
 			function logout() {
 				if(confirm("로그아웃 하시겠습니까?")){
