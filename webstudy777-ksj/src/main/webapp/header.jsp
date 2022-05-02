@@ -7,7 +7,7 @@
 			비로그인 상태에서는 로그인 폼을 제공 , 로그인 상태에서는 홈, 글쓰기 , 회원명, 로그아웃 링크를 제공 
  --%>
  <div class ="col-sm-2">
- <a href="MovieListController.do">
+ <a href="FilmListController.do">
 			<img src ="images/kostaCinema.png" width="250" height="130">
 		</a>
 </div>
@@ -22,7 +22,7 @@
 		</form>
 	</c:when>
 	<c:otherwise>
-		<a href="ListController.do">홈</a>&nbsp;&nbsp;
+		<a href="FilmListController.do">홈</a>&nbsp;&nbsp;
 		${sessionScope.mvo.name}님 &nbsp;&nbsp;
 		<a href="javascript:logout()">로그아웃</a>
 		<form id="logoutForm" method="post" action="LogoutController.do"></form>

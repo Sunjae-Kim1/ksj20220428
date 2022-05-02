@@ -20,7 +20,7 @@ public class LoginContoller implements Controller {
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberVO", vo);
-			viewName = "redirect:FilmController.do";
+			viewName = "redirect:FilmListController.do";
 		}
 		return viewName;
 	}
