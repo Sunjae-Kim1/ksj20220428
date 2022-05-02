@@ -37,4 +37,8 @@ public class TimeTableVO {
 	public String toString() {
 		return "TimeTableVO [timeTableNO=" + timeTableNO + ", showTime=" + showTime + ", filmVO=" + filmVO + "]";
 	}
+<<<<<<< HEAD
 }  
+=======
+}
+>>>>>>> branch 'main' of https://github.com/Sunjae-Kim1/ksj20220428.git

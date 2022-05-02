@@ -52,4 +52,8 @@ public class MemberVO implements Serializable{
 	public String toString() {
 		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", age=" + age + "]";
 	}
+<<<<<<< HEAD
 }  
+=======
+}
+>>>>>>> branch 'main' of https://github.com/Sunjae-Kim1/ksj20220428.git
