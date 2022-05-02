@@ -4,7 +4,8 @@ import java.sql.Clob;
 import java.sql.Date;
 
 public class FilmVO {
-	private int movieNO;
+	private int filmNO;
+	private String filmName;
 	private Clob content;
 	private Date openDate;
 	private int ageLimit;
@@ -13,20 +14,28 @@ public class FilmVO {
 	public FilmVO() {
 		super();
 	}
-	public FilmVO(int movieNO, Clob content, Date openDate, int ageLimit, String director, Date produceYear) {
+	public FilmVO(int filmNO, String filmName, Clob content, Date openDate, int ageLimit, String director,
+			Date produceYear) {
 		super();
-		this.movieNO = movieNO;
+		this.filmNO = filmNO;
+		this.filmName = filmName;
 		this.content = content;
 		this.openDate = openDate;
 		this.ageLimit = ageLimit;
 		this.director = director;
 		this.produceYear = produceYear;
 	}
-	public int getMovieNO() {
-		return movieNO;
+	public int getFilmNO() {
+		return filmNO;
 	}
-	public void setMovieNO(int movieNO) {
-		this.movieNO = movieNO;
+	public void setFilmNO(int filmNO) {
+		this.filmNO = filmNO;
+	}
+	public String getFilmName() {
+		return filmName;
+	}
+	public void setFilmName(String filmName) {
+		this.filmName = filmName;
 	}
 	public Clob getContent() {
 		return content;
@@ -60,7 +69,7 @@ public class FilmVO {
 	}
 	@Override
 	public String toString() {
-		return "FilmVO [movieNO=" + movieNO + ", content=" + content + ", openDate=" + openDate + ", ageLimit="
-				+ ageLimit + ", director=" + director + ", produceYear=" + produceYear + "]";
+		return "FilmVO [filmNO=" + filmNO + ", filmName=" + filmName + ", content=" + content + ", openDate=" + openDate
+				+ ", ageLimit=" + ageLimit + ", director=" + director + ", produceYear=" + produceYear + "]";
 	}
 }
