@@ -59,6 +59,21 @@ CREATE TABLE timetable(
 	showTime DATE NOT NULL,
 	CONSTRAINT fk_film FOREIGN KEY (filmNo) REFERENCES film(filmNo)
 )
+create sequence timetable_seq;
+insert into timetable values (timetable_seq.nextval, 1, to_date('220516 07:05:00', 'yymmdd hh:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220516 09:25:00', 'yymmdd hh:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220516 12:00:00', 'yymmdd hh:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220516 14:45:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220516 17:10:00', 'yymmdd hh24:mi:ss'));
+
+insert into timetable values (timetable_seq.nextval, 1, to_date('220517 15:10:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220518 22:05:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220519 16:30:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220520 09:00:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 1, to_date('220521 23:55:00', 'yymmdd hh24:mi:ss'));
+
+select * from timetable;
+SELECT showTime FROM timetable WHERE filmNo=1;
 
 CREATE TABLE booking(
 	bookNo NUMBER PRIMARY KEY,
