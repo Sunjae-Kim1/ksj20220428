@@ -41,6 +41,8 @@ CREATE  TABLE seat(
 	ySeat NUMBER NOT NULL
 )
 
+insert into seat values(1, 65, 1);
+
  DROP TABLE review;
  
  CREATE TABLE review(
@@ -66,6 +68,8 @@ insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 12:00:
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 14:45:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 17:10:00', 'yymmdd hh24:mi:ss'));
 
+insert into timetable values (999, 1, sysdate);
+
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 13:10:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 16:30:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 20:40:00', 'yymmdd hh24:mi:ss'));
@@ -85,9 +89,6 @@ from (
 	select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable
 )
 
-SELECT ROW_NUMBER() OVER(ORDER BY timetableno DESC) AS rnum, showtime
-from timetable
-
 SELECT * FROM timetable 
 
 CREATE TABLE booking(
@@ -102,9 +103,21 @@ CREATE TABLE booking(
 )
 SELECT * FROM film WHERE filmNo = 1
 
+select timetableNo 
+from timetable 
+where filmNo=1 
+and showtime=to_date('20220516 07:05:00','yyyymmdd hh24:mi:ss');
 
+create sequence booking_seq;
 
+select sysdate from dual;
 
+insert into booking values(1, (
+	select timetableNo 
+	from timetable 
+	where filmNo=1 
+	and showtime=to_date('20220516 07:05:00','yyyymmdd hh24:mi:ss')
+), 'java', 1, sysdate);
 
 
 
