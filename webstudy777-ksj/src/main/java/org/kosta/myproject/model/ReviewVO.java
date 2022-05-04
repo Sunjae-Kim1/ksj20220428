@@ -1,19 +1,21 @@
 package org.kosta.myproject.model;
 
+import java.sql.Clob;
+
 public class ReviewVO {
 	
 	private int star;
-	private String review;
-	private MovieVO movieVO;
+	private Clob review;
+	private FilmVO filmVO;
 	private MemberVO memberVO;
 	public ReviewVO() {
 		super();
 	}
-	public ReviewVO(int star, String review, MovieVO movieVO, MemberVO memberVO) {
+	public ReviewVO(int star, Clob review, FilmVO filmVO, MemberVO memberVO) {
 		super();
 		this.star = star;
 		this.review = review;
-		this.movieVO = movieVO;
+		this.filmVO = filmVO;
 		this.memberVO = memberVO;
 	}
 	public int getStar() {
@@ -22,17 +24,17 @@ public class ReviewVO {
 	public void setStar(int star) {
 		this.star = star;
 	}
-	public String getReview() {
+	public Clob getReview() {
 		return review;
 	}
-	public void setReview(String review) {
+	public void setReview(Clob review) {
 		this.review = review;
 	}
-	public MovieVO getMovieVO() {
-		return movieVO;
+	public FilmVO getFilmVO() {
+		return filmVO;
 	}
-	public void setMovieVO(MovieVO movieVO) {
-		this.movieVO = movieVO;
+	public void setFilmVO(FilmVO filmVO) {
+		this.filmVO = filmVO;
 	}
 	public MemberVO getMemberVO() {
 		return memberVO;
@@ -42,7 +44,6 @@ public class ReviewVO {
 	}
 	@Override
 	public String toString() {
-		return "ReviewVO [star=" + star + ", review=" + review + ", movieVO=" + movieVO + ", memberVO=" + memberVO
-				+ "]";
+		return "ReviewVO [star=" + star + ", review=" + review + ", filmVO=" + filmVO + ", memberVO=" + memberVO + "]";
 	}
 }
