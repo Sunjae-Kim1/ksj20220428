@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 실패</title>
+<title>login-fail</title>
 </head>
 <body>
 <script type="text/javascript">
-	alert("로그인 되지 않았습니다. \n아이디와 패스워드를 확인하세요.");
-	location.href="FilmListController.do";
+	alert("로그인되지 않았습니다. \n 아이디와 패스워드를 확인해 주세요.")
+	location.href="ListController.do"
 </script>
-
 </body>
 </html>

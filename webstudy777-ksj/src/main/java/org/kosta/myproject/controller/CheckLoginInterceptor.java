@@ -6,39 +6,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /*
-	로그인 체크 여부 역할하는 객체
-	인증이 필요없는 서비스 컨트롤러 저장
-	인증이 필요없는 컨트롤러 외 인증이 필요한 컨트롤러는
-	세션 존재 , 세션 내의 인증정보 ( 회원 객체 ) 존재 유무를
-	로그인 상태면 true , 비 로그인 시 false 반환
-*/
+ *  로그인 여부를 체크하는 역할하는 객체 
+ *  인증이 필요없는  컨트롤러를 저장하고 
+ *  인증이 필요없는 컨트롤러 외의 컨트롤러 , 즉 인증이 필요한 컨트롤러들에 대해서는
+ *  세션 존재 , 세션 내의 인증정보(회원객체) 존재 유무를 판단해 
+ *  로그인 되어 있는 상태이면 true , 로그인 되어 있지 않은 상태이면 false 를 반환 
+ */
 public class CheckLoginInterceptor {
-	private static CheckLoginInterceptor instance = new CheckLoginInterceptor(); 
-	// 인증이 필요없는 컨트롤러 리스트
-	private ArrayList<String> permitAllList = new ArrayList<String>();
+	private static CheckLoginInterceptor instance=new CheckLoginInterceptor();
+	// 인증이 필요없는 컨트롤러 리스트 
+	private ArrayList<String> permitAllList=new ArrayList<String>();
 	private CheckLoginInterceptor() {
-		// 인터셉터가 생성되는 시점에 인증이 필요없는 컨트롤러 명을 저장
-		permitAllList.add("CheckIdController");
-		permitAllList.add("FindMemberByIdController");
+		//인터셉터가 생성되는 시점에 인증이 필요없는 컨트롤러명을 저장한다 
+		permitAllList.add("ListController");
 		permitAllList.add("LoginController");
+		permitAllList.add("RegisterFormController");
+		permitAllList.add("CheckIdController");
 		permitAllList.add("RegisterMemberController");
-	} 
-	public static CheckLoginInterceptor getInstance(){ 
+	}
+	public static CheckLoginInterceptor getInstance() {
 		return instance;
 	}
 	/*
-		로그인이 필요한 컨트롤러이라도 비 로그인 상태 시 false 반환
-		컨트롤러가 실행되어도 문제없으면 true 반환
-	*/
-	public boolean checkLogin(HttpServletRequest request , String controllerName) {
-		boolean result = true;
-		if(permitAllList.contains(controllerName)==false) { // 비 로그인 상태에서 실행되는 컨트롤러가 아니면
-			HttpSession session = request.getSession(false);
+	 *  로그인이 필요한 컨트롤러임에도 비로그인 상태이면 false를 반환
+	 *  컨트롤러가 실행되어도 문제 없는 상태이면 true를 반환 
+	 */
+	public boolean checkLogin(HttpServletRequest request,String controllerName) {
+		boolean result=true;
+		if(permitAllList.contains(controllerName)==false) {//비로그인 상태에서 실행될 수 있는 컨트롤러가 아니면 
+			HttpSession session=request.getSession(false);
 			if(session==null||session.getAttribute("mvo")==null) {
-				System.out.println("***" + controllerName + " 인증이 필요한 서비스이기에 로그인하세요.");
+				System.out.println("**"+controllerName+" 인증이 필요한 서비스이므로 로그인해야 함**");
 				result=false;
 			}
-		}
+		}		
 		return result;
 	}
 }
+
+
+
+
+
+
+
+
+

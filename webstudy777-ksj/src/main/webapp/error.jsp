@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>긴급 점검 중</title>
+<title>긴급점검중</title>
 </head>
-<body>
-
-긴급 점검 중 ( 콘솔 확인 )
-<br><br>
-<img src = "images/error.jpg">
-
+<body bgcolor="yellow">
+긴급 점검중 (콘솔을 확인하세요)<br>
+<img src="images/댕댕.gif">
 </body>
 </html>

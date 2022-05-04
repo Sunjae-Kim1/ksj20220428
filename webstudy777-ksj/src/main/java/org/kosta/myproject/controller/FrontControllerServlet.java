@@ -21,13 +21,12 @@ public class FrontControllerServlet extends HttpServlet {
 			String uri=request.getRequestURI();
 			String controllerName=uri.substring(request.getContextPath().length()+1, uri.length()-3);
 			
-			// 인증 체크 공통 정책
-			boolean result = CheckLoginInterceptor.getInstance().checkLogin(request, controllerName);
-			if(result == false) {
-				response.sendRedirect("index.jsp"); // 로그인이 필요해도 비 로그인 상태이기에 로그인 폼에 있는 index 로 리턴
-				return; // 메서드 실행 종료
+			// 인증체크 공통정책 
+			boolean result=CheckLoginInterceptor.getInstance().checkLogin(request, controllerName);
+			if(result==false) {
+				response.sendRedirect("index.jsp");//로그인 필요함에도 비로그인상태이므로 로그인폼이 있는 index.jsp로 응답한다
+				return; // 메서드 실행 종료 
 			}
-			
 			// 추출한 컨트롤러명으로 HandlerMapping 에 의뢰하여 개별 컨트롤러 객체를 상위 인터페이스 Controller 타입으로 반환 
 			Controller controller=HandlerMapping.getInstance().create(controllerName);
 			String viewName=controller.execute(request, response);//상위 인터페이스에 의해 표준화된 abstract method로 다양한 컨트롤러 객체를 실행할 수 있다
@@ -35,7 +34,7 @@ public class FrontControllerServlet extends HttpServlet {
 				response.sendRedirect(viewName.substring(9));//substring은 redirect: 을 제외하기 위해 
 			}else {				
 				request.getRequestDispatcher(viewName).forward(request, response);
-			}
+			}		
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("error.jsp");

@@ -1,6 +1,5 @@
 package org.kosta.myproject.model;
 
-
 import java.sql.Date;
 
 public class FilmVO {
@@ -24,6 +23,13 @@ public class FilmVO {
 		this.ageLimit = ageLimit;
 		this.director = director;
 		this.produceYear = produceYear;
+	}
+	
+	public FilmVO(int filmNO, String filmName, String director) {
+		super();
+		this.filmNO = filmNO;
+		this.filmName = filmName;
+		this.director = director;
 	}
 	public int getFilmNO() {
 		return filmNO;
@@ -73,4 +79,3 @@ public class FilmVO {
 				+ ", ageLimit=" + ageLimit + ", director=" + director + ", produceYear=" + produceYear + "]";
 	}
 }
-

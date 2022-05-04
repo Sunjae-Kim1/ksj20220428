@@ -8,86 +8,81 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 public class MemberDAO {
-
-	private static MemberDAO instance= new MemberDAO();
+	private static MemberDAO instance = new MemberDAO();
 	private DataSource dataSource;
-	private MemberDAO(){
+	private MemberDAO() {
 		this.dataSource = DataSourceManager.getInstance().getDataSource();
 	}
 	public static MemberDAO getInstance() {
 		return instance;
 	}
-	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException{
+	public void closeAll(PreparedStatement pstmt,Connection con) throws SQLException{
 		if(pstmt!=null)
 			pstmt.close();
 		if(con!=null)
-			con.close();
+			con.close(); // 컨넥션을 컨넥션풀에 반납한다 
 	}
-	public void closeAll(PreparedStatement pstmt, Connection con, ResultSet rs) throws SQLException{
+	public void closeAll(ResultSet rs,PreparedStatement pstmt,Connection con) throws SQLException{
 		if(rs!=null)
 			rs.close();
 		closeAll(pstmt, con);
 	}
-	public MemberVO login(String id, String pw) throws SQLException {
-		MemberVO vo = new MemberVO();
-		Connection con =null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+	public MemberVO login(String id, String password) throws SQLException {
+		MemberVO vo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
 		try {
-			con = dataSource.getConnection();
-			String sql = "SELECT name FROM member WHERE id = ? AND password =?";
-			pstmt =con.prepareStatement(sql);
+			con=dataSource.getConnection();
+			String sql="SELECT name FROM member WHERE id=? AND password=?";
+			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			pstmt.setString(2, pw);
+			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				vo.setId(id);
-				vo.setName(rs.getString("name"));
+				vo=new MemberVO(id,rs.getString(1),18,password);
 			}
 		}finally {
-			closeAll(pstmt, con, rs);
+			closeAll(rs, pstmt, con);
 		}
 		return vo;
 	}
+	public void register(MemberVO vo) throws SQLException {
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		try {
+			con=dataSource.getConnection();			//dbcp로부터 컨넥션을 빌려온다.
+			String sql = "insert into member(id,name,age,password) "
+					+ "values (?,?,?,?)";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getName());
+			pstmt.setInt(3, vo.getAge());
+			pstmt.setString(4, vo.getPassword());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(pstmt,con);
+		}
+		//insert into mvc_member(id,password,name,address,birthday,regdate) values
+		//('java','a','아이유','오리',to_date('1993-05-16','yyyy-mm-dd'),sysdate);
+	}
 	public boolean checkId(String id) throws SQLException {
 		boolean result = false;
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs =null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		ResultSet rs = null;
 		try {
-			con =dataSource.getConnection();
-			String sql ="SELECT COUNT(*) FROM mvc_member WHERE id = ?";
-			pstmt = con.prepareStatement(sql);
+			con=dataSource.getConnection();			//dbcp로부터 컨넥션을 빌려온다.
+			String sql = "SELECT COUNT(*) FROM member WHERE id=?";
+			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			//존재하면 true, 존재하지 않으면 false
-			if(rs.next()&&rs.getInt(1)==1)
+			rs = pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)==1) {
 				result=true;
+			}
 		}finally {
-			closeAll(pstmt, con, rs);
+			closeAll(rs,pstmt,con);
 		}
 		return result;
-		
-	}
-	public void register(MemberVO vo) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try {
-			con = dataSource.getConnection();
-			
-			String sql = "insert into member(id , password , age , name) values(? , ? , ? , ?)";
-			
-			pstmt=con.prepareStatement(sql);
-			
-			pstmt.setString(1, vo.getId());
-			pstmt.setString(2, vo.getPassword());
-			pstmt.setInt(3, vo.getAge());
-			pstmt.setString(4, vo.getName());
-			
-			pstmt.executeUpdate();
-			
-		}finally {
-			closeAll(pstmt, con);
-		}
 	}
 }
