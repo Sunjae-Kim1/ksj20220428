@@ -1,17 +1,15 @@
 package org.kosta.myproject.model;
 
-import java.sql.Clob;
-
 public class ReviewVO {
 	
 	private int star;
-	private Clob review;
+	private String review;
 	private FilmVO filmVO;
 	private MemberVO memberVO;
 	public ReviewVO() {
 		super();
 	}
-	public ReviewVO(int star, Clob review, FilmVO filmVO, MemberVO memberVO) {
+	public ReviewVO(int star, String review, FilmVO filmVO, MemberVO memberVO) {
 		super();
 		this.star = star;
 		this.review = review;
@@ -24,10 +22,10 @@ public class ReviewVO {
 	public void setStar(int star) {
 		this.star = star;
 	}
-	public Clob getReview() {
+	public String getReview() {
 		return review;
 	}
-	public void setReview(Clob review) {
+	public void setReview(String review) {
 		this.review = review;
 	}
 	public FilmVO getFilmVO() {
