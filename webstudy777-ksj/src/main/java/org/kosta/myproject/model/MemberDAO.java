@@ -34,13 +34,13 @@ public class MemberDAO {
 		ResultSet rs=null;
 		try {
 			con=dataSource.getConnection();
-			String sql="SELECT name FROM member WHERE id=? AND password=?";
+			String sql="SELECT name, age FROM member WHERE id=? AND password=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setString(2, password);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				vo=new MemberVO(id,rs.getString(1),18,password);
+				vo=new MemberVO(id,rs.getString(1),rs.getInt(2),password);
 			}
 		}finally {
 			closeAll(rs, pstmt, con);

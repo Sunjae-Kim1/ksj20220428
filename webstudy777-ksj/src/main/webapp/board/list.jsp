@@ -15,7 +15,7 @@
 		<tr style="background-color: #ffff66 ">
 			<td>
 				<c:import url="images.jsp">
-				<c:param name="filmNO" value="${fvo.filmNO}"/>
+				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
 				</c:import>
 			</td>
 			<%-- 
@@ -24,14 +24,14 @@
 			<td>
 			<c:choose>
 				<c:when test="${sessionScope.mvo==null}">
-				${fvo.filmName}
+				${fvo.filmVO.filmName}
 				</c:when>
 				<c:otherwise>				
-				<a href="PostDetailController.do?filmNO=${fvo.filmNO}">${fvo.filmName}</a>
+				<a href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}">${fvo.filmVO.filmName}</a>
 				</c:otherwise>
 			</c:choose>
 			</td>
-			<td>${fvo.director}</td>
+			<td>${fvo.star}</td>
 		</tr>
 	</c:forEach>
 	</tbody>

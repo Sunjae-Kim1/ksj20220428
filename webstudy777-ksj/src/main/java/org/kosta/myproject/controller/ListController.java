@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.kosta.myproject.model.FilmDAO;
-import org.kosta.myproject.model.FilmVO;
 import org.kosta.myproject.model.Pagination;
+import org.kosta.myproject.model.ReviewVO;
 
 public class ListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ArrayList<FilmVO> list = new ArrayList<FilmVO>();
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
 		//클라이언트로부터 페이지번호를 전달받는다. Pagination(dao.getTotalPostCount(),nowPage);
 		String pageNo = request.getParameter("pageNo");
 		Pagination pagination = null;

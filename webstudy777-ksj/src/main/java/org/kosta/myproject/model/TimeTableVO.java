@@ -1,6 +1,6 @@
 package org.kosta.myproject.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class TimeTableVO {
 	private int timeTableNO;

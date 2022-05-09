@@ -28,20 +28,22 @@ public class FilmDAO {
 			rs.close();
 		closeAll(pstmt, con);
 	}
-	public ArrayList<FilmVO> findPostList(Pagination pagination) throws SQLException {
-		ArrayList<FilmVO> list = new ArrayList<FilmVO>();
+	public ArrayList<ReviewVO> findPostList(Pagination pagination) throws SQLException {
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select filmNO,filmName,director from film where filmNO between ? and ?";
+			String sql = "select nvl(AVG(star),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
+					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName "
+					+ "order by filmNo asc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				FilmVO vo = new FilmVO(rs.getInt(1),rs.getString(2),rs.getString(3));
+				ReviewVO vo = new ReviewVO(rs.getInt(1),null,new FilmVO(rs.getInt(2),rs.getString(3),null),null);
 				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
 				list.add(vo);
 			}

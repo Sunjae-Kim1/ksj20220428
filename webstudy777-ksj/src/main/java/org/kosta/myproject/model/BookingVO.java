@@ -1,21 +1,21 @@
 package org.kosta.myproject.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BookingVO {
 	private int bookNo;
 	private Date bookTime;
-	private SeatVO seatVO;
+	private String seatNo;
 	private MemberVO memberVO;
 	private TimeTableVO timeTableVO;
 	public BookingVO() {
 		super();
 	}
-	public BookingVO(int bookNo, Date bookTime, SeatVO seatVO, MemberVO memberVO, TimeTableVO timeTableVO) {
+	public BookingVO(int bookNo, Date bookTime, String seatNo, MemberVO memberVO, TimeTableVO timeTableVO) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTime = bookTime;
-		this.seatVO = seatVO;
+		this.seatNo = seatNo;
 		this.memberVO = memberVO;
 		this.timeTableVO = timeTableVO;
 	}
@@ -31,11 +31,11 @@ public class BookingVO {
 	public void setBookTime(Date bookTime) {
 		this.bookTime = bookTime;
 	}
-	public SeatVO getSeatVO() {
-		return seatVO;
+	public String getseatNo() {
+		return seatNo;
 	}
-	public void setSeatVO(SeatVO seatVO) {
-		this.seatVO = seatVO;
+	public void setseatNo(String seatNo) {
+		this.seatNo = seatNo;
 	}
 	public MemberVO getMemberVO() {
 		return memberVO;
@@ -51,7 +51,7 @@ public class BookingVO {
 	}
 	@Override
 	public String toString() {
-		return "BookingVO [bookNo=" + bookNo + ", bookTime=" + bookTime + ", seatVO=" + seatVO + ", memberVO="
+		return "BookingVO [bookNo=" + bookNo + ", bookTime=" + bookTime + ", seatNo=" + seatNo + ", memberVO="
 				+ memberVO + ", timeTableVO=" + timeTableVO + "]";
 	}
 }  
