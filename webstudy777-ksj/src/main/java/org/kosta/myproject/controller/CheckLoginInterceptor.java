@@ -3,7 +3,6 @@ package org.kosta.myproject.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /*
 	로그인 체크 여부 역할하는 객체
@@ -32,13 +31,13 @@ public class CheckLoginInterceptor {
 	*/
 	public boolean checkLogin(HttpServletRequest request , String controllerName) {
 		boolean result = true;
-		if(permitAllList.contains(controllerName)==false) { // 비 로그인 상태에서 실행되는 컨트롤러가 아니면
-			HttpSession session = request.getSession(false);
-			if(session==null||session.getAttribute("mvo")==null) {
-				System.out.println("***" + controllerName + " 인증이 필요한 서비스이기에 로그인하세요.");
-				result=false;
-			}
-		}
+//		if(permitAllList.contains(controllerName)==false) { // 비 로그인 상태에서 실행되는 컨트롤러가 아니면
+//			HttpSession session = request.getSession(false);
+//			if(session==null||session.getAttribute("mvo")==null) {
+//				System.out.println("***" + controllerName + " 인증이 필요한 서비스이기에 로그인하세요.");
+//				result=false;
+//			}
+//		}
 		return result;
 	}
 }

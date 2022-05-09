@@ -84,7 +84,7 @@ select to_char(showtime, 'hh24:mi:ss')
 from TIMETABLE
 where to_char(showtime, 'yy-mm-dd')='22-05-16' and filmNo='2'
 
-select showtime
+select to_char(sysdate, 'yy-mm-dd') as today, max(showtime)
 from (
 	select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable
 )
@@ -95,13 +95,12 @@ CREATE TABLE booking(
 	bookNo NUMBER PRIMARY KEY,
 	timetableNo NUMBER NOT NULL,
 	id VARCHAR2(100) NOT NULL,
-	seatNo NUMBER NOT NULL,
+	seatNo VARCHAR2(100) NOT NULL,
 	bookTime DATE NOT NULL,
 	CONSTRAINT fk_timetable FOREIGN KEY (timetableNo) REFERENCES timetable(timetableNo),
-	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id),
-	CONSTRAINT fk_seat FOREIGN KEY (seatNo) REFERENCES seat(seatNo)
+	CONSTRAINT fk_member FOREIGN KEY (id) REFERENCES member(id)
 )
-SELECT * FROM film WHERE filmNo = 1
+SELECT * FROM film WHERE filmNo = 2
 
 select timetableNo 
 from timetable 
@@ -110,14 +109,16 @@ and showtime=to_date('20220516 07:05:00','yyyymmdd hh24:mi:ss');
 
 create sequence booking_seq;
 
-select sysdate from dual;
-
-insert into booking values(1, (
+insert into booking values(booking_seq.nextval, (
 	select timetableNo 
 	from timetable 
 	where filmNo=1 
 	and showtime=to_date('20220516 07:05:00','yyyymmdd hh24:mi:ss')
-), 'java', 1, sysdate);
+), 'java', '2', sysdate);
 
+select bookNo, timeTableNo, seatNo, to_date(booktime, 'yy.mm.dd hh24:mi:ss') from booking where id='java';
 
+select filmNo, showTime from timeTable where timeTableNo=5;
+
+select * from booking;
 
