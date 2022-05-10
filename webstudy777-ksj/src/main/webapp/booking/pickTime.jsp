@@ -10,10 +10,10 @@
 <select id="time" required="required">
 	<option>예매일 선택 후 시간을 선택하세요</option>
 </select>
-<button type="submit" onclick="return seatView()" >좌석 선택하기</button>
 <form id="SeatForm" action="PickSeatController.do" method="post">
 	<input type="hidden" name="picktime" value="">
 	<input type="hidden" name="movieNo" value="${filmNO}">
+	<button type="submit" onclick="return seatView()" >좌석 선택하기</button>
 </form>
 <script type="text/javascript">
 function test(){
@@ -25,7 +25,7 @@ function test(){
 	 	var dayTime = "${t}";
 	 	var day = dayTime.substr(0,10);
 	 	var time = dayTime.substr(day.length+1, 5);
-	 	var v = $('#bookTime_date').val();
+	 	var v = document.getElementById("bookTime_date").value;
 	 	if(day==v){
 	 		var opt = document.createElement("option");
 		 	opt.innerHTML = time;

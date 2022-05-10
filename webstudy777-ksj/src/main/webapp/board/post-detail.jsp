@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--상세 게시글 보기 화면 --%>
+
+<input type="hidden" id="idlist" value="${idlist}">
+
 <div class="col-sm-2 offset-sm-10" align="right">
 <button type="button" onclick="return bookingage()">예매하기</button>
 </div>
@@ -54,7 +57,7 @@
 <%--댓글 작성 --%>
 <label>별점을 평가해 주세요:</label> 
 <select id="stars" onchange="return starchange(this.value)"> 
-<option value=" ">평점을 선택해 주세요</option>
+<option value="">평점을 선택해 주세요</option>
 <option value="5">★★★★★</option> 
 <option value="4">☆★★★★</option> 
 <option value="3">☆☆★★★</option> 
@@ -74,6 +77,11 @@
 </form>
 
 <script type="text/javascript">
+	var idlist2 = document.getElementById("idlist").value;
+	var idlist = idlist2.substring(1,idlist2.length-1);
+	idlist = idlist.split(', ');
+	var thisid = "<c:out value='${sessionScope.mvo.id}'/>";
+	
 	function bookingage(){
 		if(${sessionScope.mvo.age}<${fvo.ageLimit}){
 			window.open("member/checkid-fail.jsp", "나이확인", "width = 500, height = 500, top = 100, left = 200");
@@ -82,16 +90,39 @@
 			location.href=filmNO;
 		}
 	}
+	
 	function starchange(star){
 		$('input[name=star]').attr('value',star);
 	}
+	
 	function postreview(){
+		if(idlist.includes(thisid)){
+			alert("이미 리뷰를 작성한 영화입니다.");
+			return false;
+		}
+		<%--
+		if(idlist.indexOf(thisid)!=-1){
+			alert("이미 리뷰를 작성한 영화입니다.");
+			return false;
+			idlist.includes(thisid)
+		}
+		--%>
 		var constar = $('input[name=star]').val();
-		alert(constar);
-		if(constar==" "){
+		if(constar==""){
 			alert("별점을 추가해 주세요.");
 			return false;
 		}
+	}		
+		
+		<%--
+
+		
+		alert(id1);	
+		if(${list.id}==${sessionScope.mvo.id}){
+			alert("이미 리뷰를 작성한 영화입니다.");
+			return false;
+		}
+		--%>
 		<%--WritePostController.do--%>
-	}
+
 </script>
