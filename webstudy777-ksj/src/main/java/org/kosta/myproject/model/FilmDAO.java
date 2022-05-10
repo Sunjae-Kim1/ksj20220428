@@ -36,7 +36,7 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
+			String sql = "select nvl(ROUND(AVG(star),1),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
 					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName "
 					+ "order by avgStar desc";
 			pstmt = con.prepareStatement(sql);

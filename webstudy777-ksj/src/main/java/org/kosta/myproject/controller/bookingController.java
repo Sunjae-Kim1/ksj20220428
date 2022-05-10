@@ -28,7 +28,6 @@ public class bookingController implements Controller {
 		String picktimeTableNo = null;
 		String movieName = null;
 		picktimeTableNo = TimeTableDAO.getInstance().findtimeTableNO(movieNo,picktime);
-		System.out.println(picktimeTableNo);
 		/*자리 중복 확인하는 함수
 		for(int i=0;i<seatArr.length;i++) {
 			dupl = BookingDAO.getInstance().duplicateFilm(picktimeTableNo,seatArr[i]);

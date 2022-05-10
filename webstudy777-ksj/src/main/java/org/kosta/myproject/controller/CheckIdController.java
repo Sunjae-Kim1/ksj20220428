@@ -9,9 +9,8 @@ public class CheckIdController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		boolean result = true;
 		String id = request.getParameter("id");
-		result = MemberDAO.getInstance().checkId(id);
+		boolean result = MemberDAO.getInstance().checkId(id);
 		if(result) {
 			return "member/checkid-fail.jsp";
 		}else {
@@ -19,3 +18,13 @@ public class CheckIdController implements Controller {
 		}
 	}
 }
+/*
+		String viewName=null;
+		String id=request.getParameter("id");
+		boolean result=MemberDAO.getInstance().checkId(id);
+		if(result)
+			viewName="checkid-fail.jsp";
+		else
+			viewName="checkid-ok.jsp";
+		return viewName;
+*/
