@@ -11,25 +11,23 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="css/myhome.css">
-<title>Home</title>
+
+
+<title>KOSTA CINEMA</title>
+  <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-<div class="container-fluid">
-	<div class="row header">
-		<div class="col-sm-2"align="left">
-			<a href="index.jsp"><img src="images/KostaCinemaLogo.png"/></a>
-		</div>
-		<div class="col-sm-8 offset-sm-2"align="right">
+<body style="background-image: url('images/cinema.jpg')" >
+
 			<c:import url="header.jsp"></c:import>
-		</div>
-	</div><%--상단부 헤더 div 끝 --%>
-	
 	<div class="row">
 		<div class="col-sm-8 offset-sm-2">
 			<c:import url="${requestScope.url}"></c:import>
 			<%--각 컨트롤러에서  reqiest에 할당한 url을 이용해서 import한다.--%>
 		</div>
 	</div><%--메인화면 div 끝 --%>	
-</div>
+
+<br>
+<br>
+<c:import url="footer.jsp"></c:import>
 </body>
 </html>

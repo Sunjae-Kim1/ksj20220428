@@ -1,51 +1,106 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<center><h3>현재상영작</h3></center>
+<br>
+<br>
+<center>
+	<h2>현재상영작</h2>
+</center>
+<br>
+<br>
+
+
 <div align="right">
-<form action="OrderByListController.do">
-<button type= "button" name="avgStar" onclick="location.href='ListController.do'">평점</button>
-<button type= "submit" name="filmName">제목</button>
-<button type= "submit" name="openDate">신작</button>
-</form>
+	<form action="OrderByListController.do">
+		<button type="button" name="avgStar"
+			onclick="location.href='ListController.do'">평점</button>
+		<button type="submit" name="filmName">제목</button>
+		<button type="submit" name="openDate">신작</button>
+	</form>
 </div>
 
 <table class="table table-bordered table-hover boardlist">
-	<thead>
-		<tr style="background-color: #4dff4d ">
-			<th>섬네일</th>
-			<th>제  목</th>
-			<th>평  점</th>
-		</tr>
-	</thead>
 	<tbody>
-	<c:forEach items="${list}" var="fvo">
-		<tr style="background-color: #ffff66 ">
-			<td>
-			<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
-			<%-- 
+	
+	
+		<c:forEach items="${list}" var="fvo">
+			<tr style="background-color: #333333">		
+				<td class="card-body">
+				<div class="card shadow-sm">
+					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
+					<%-- 
 				<c:import url="images.jsp">
 				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
 				</c:import>
-			--%>
-			<img src="images/${fvo.filmVO.filmNO}.gif">	
-			</td>
-			<%-- 
-				로그인상태일때만 title에 링크부여, PostDetailController.do?쿼리스트링 으로 pk인 게시물 no가 서버로 전달
-			--%>
-			<td>
-			<c:choose>
-				<c:when test="${sessionScope.mvo==null}">
-				${fvo.filmVO.filmName}
-				</c:when>
-				<c:otherwise>				
-				<a href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}">${fvo.filmVO.filmName}</a>
-				</c:otherwise>
-			</c:choose>
-			</td>
-			<td>${fvo.star}</td>
-		</tr>
-	</c:forEach>
+			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
+					<div class="d-flex justify-content-between align-items-center">
+
+						<c:choose>
+							<c:when test="${sessionScope.mvo==null}">
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+							</c:when>
+							<c:otherwise>
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+								<a type="button" class="btn btn-sm btn-outline-dark"
+									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
+									class="card-text">상세페이지로</a>
+							</c:otherwise>
+						</c:choose>
+					</div> <small class="text-muted">☆:${fvo.star}</small>
+					</div>
+
+				</td>
+				<td class="card-body">
+				<div class="card shadow-sm">
+					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
+					<%-- 
+				<c:import url="images.jsp">
+				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
+				</c:import>
+			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
+					<div class="d-flex justify-content-between align-items-center">
+
+						<c:choose>
+							<c:when test="${sessionScope.mvo==null}">
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+							</c:when>
+							<c:otherwise>
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+								<a type="button" class="btn btn-sm btn-outline-dark"
+									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
+									class="card-text">상세페이지로</a>
+							</c:otherwise>
+						</c:choose>
+					</div> <small class="text-muted">☆:${fvo.star}</small>
+					</div>
+
+				</td>
+				<td class="card-body">
+				<div class="card shadow-sm">
+					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
+					<%-- 
+				<c:import url="images.jsp">
+				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
+				</c:import>
+			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
+					<div class="d-flex justify-content-between align-items-center">
+
+						<c:choose>
+							<c:when test="${sessionScope.mvo==null}">
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+							</c:when>
+							<c:otherwise>
+								<p class="card-text">${fvo.filmVO.filmName}</p>
+								<a type="button" class="btn btn-sm btn-outline-dark"
+									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
+									class="card-text">상세페이지로</a>
+							</c:otherwise>
+						</c:choose>
+					</div> <small class="text-muted">☆:${fvo.star}</small>
+					</div>
+
+				</td>
+		</c:forEach>
 	</tbody>
 </table>
 <%--
@@ -53,21 +108,26 @@ pagination 처리
 ${pagination.startPageOfPageGroup}
 ${pagination.endPageOfPageGroup}
 --%>
-<ul class="pagination justify-content-center" style="margin:20px 0">
-  <c:if test="${pagination.previousPageGroup }">
-    <li class="page-item"><a class="page-link" href="ListController.do?pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
-  </c:if>
-  <c:forEach begin="${pagination.startPageOfPageGroup}" end="${pagination.endPageOfPageGroup}" var="page">
-  <c:choose>
-  	<c:when test="${page==pagination.nowPage }">
-  		  <li class="page-item active"><a class="page-link" href="ListController.do?pageNo=${page}">${page}</a></li>
-  	</c:when>
-  	  <c:otherwise>
-		<li class="page-item"><a class="page-link" href="ListController.do?pageNo=${page}">${page}</a></li>
-  </c:otherwise>
-  </c:choose>
-</c:forEach>  
-  <c:if test="${pagination.nextPageGroup }">
-    <li class="page-item"><a class="page-link" href="ListController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
-  </c:if>
+<ul class="pagination justify-content-center" style="margin: 20px 0">
+	<c:if test="${pagination.previousPageGroup }">
+		<li class="page-item"><a class="page-link"
+			href="ListController.do?pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
+	</c:if>
+	<c:forEach begin="${pagination.startPageOfPageGroup}"
+		end="${pagination.endPageOfPageGroup}" var="page">
+		<c:choose>
+			<c:when test="${page==pagination.nowPage }">
+				<li class="page-item active"><a class="page-link"
+					href="ListController.do?pageNo=${page}">${page}</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link"
+					href="ListController.do?pageNo=${page}">${page}</a></li>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:if test="${pagination.nextPageGroup }">
+		<li class="page-item"><a class="page-link"
+			href="ListController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
+	</c:if>
 </ul>
