@@ -38,16 +38,11 @@
 
 <%--영화 리뷰 --%>
 <table class="table table-bordered table-hover boardlist">
-	<thead>
-		<tr style="background-color: #4dff4d ">
-			<th>평  점</th>
-			<th>리  뷰</th>
-		</tr>
-	</thead>
 	<tbody>
 <c:forEach items="${list}" var="list">
 <tr style="background-color: #ffff66 ">
-	<td>	${list.star} </td>
+	<td width="100">${list.memberVO.id }</td>
+	<td width="100">	${list.star} </td>
 	<td>	${list.review} </td>
 </tr>			
 </c:forEach>
