@@ -4,7 +4,7 @@ package org.kosta.myproject.model;
  */
 public class Pagination {
 	private int nowPage=1; //현재 페이지
-	private int postCountPerPage = 5;//페이지 당 게시물 수
+	private int postCountPerPage = 3;//페이지 당 게시물 수
 	private int pageCountPerPageGroup=4;//페이지 그룹 당 페이지수
 	private int totalPostCount;//총 게시물 수 (DB에 저장되어있는)
 	public Pagination(int totalPostCount) {

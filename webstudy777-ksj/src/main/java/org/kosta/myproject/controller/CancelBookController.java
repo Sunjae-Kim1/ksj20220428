@@ -9,9 +9,11 @@ public class CancelBookController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		request.setAttribute("filmName", request.getParameter("filmName"));
+		request.setAttribute("showTime", request.getParameter("showTime"));
 		BookingDAO.getInstance().cancleBook(request.getParameter("bookNo"));
-		return "ListController.do";
+		request.setAttribute("url", "redrect:booking/cancelBook.jsp");
+		return "layout.jsp";
 	}
 
 }
