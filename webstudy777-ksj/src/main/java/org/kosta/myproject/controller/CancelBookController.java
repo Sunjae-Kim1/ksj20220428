@@ -12,7 +12,7 @@ public class CancelBookController implements Controller {
 		request.setAttribute("filmName", request.getParameter("filmName"));
 		request.setAttribute("showTime", request.getParameter("showTime"));
 		BookingDAO.getInstance().cancleBook(request.getParameter("bookNo"));
-		request.setAttribute("url", "redrect:booking/cancelBook.jsp");
+		request.setAttribute("url", "booking/cancelBook.jsp");
 		return "layout.jsp";
 	}
 
