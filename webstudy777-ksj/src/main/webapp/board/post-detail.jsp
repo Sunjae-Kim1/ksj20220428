@@ -20,9 +20,7 @@
 <tbody>
 <tr>
 	<td>
-		<c:import url="images.jsp">
-		<c:param name="filmNO" value="${fvo.filmNO}"/>
-		</c:import>
+		<img src="images/${fvo.filmNO}.gif">
 	</td>
 	<td colspan="5">
 	<%-- html pre tag : db에 저장된 글 형식 그대로 표현, tip : pre tag 라인은 행 변경 없이 한 라인으로 표현해야한다. --%>
@@ -79,7 +77,7 @@
 	
 	function bookingage(){
 		if(${sessionScope.mvo.age}<${fvo.ageLimit}){
-			window.open("member/checkid-fail.jsp", "나이확인", "width = 500, height = 500, top = 100, left = 200");
+			alert("관람연령등급을 확인해주세요");
 		}else{
 			var filmNO="PickTimeController.do?filmNO="+${fvo.filmNO}
 			location.href=filmNO;
@@ -95,29 +93,10 @@
 			alert("이미 리뷰를 작성한 영화입니다.");
 			return false;
 		}
-		<%--
-		if(idlist.indexOf(thisid)!=-1){
-			alert("이미 리뷰를 작성한 영화입니다.");
-			return false;
-			idlist.includes(thisid)
-		}
-		--%>
 		var constar = $('input[name=star]').val();
 		if(constar==""){
 			alert("별점을 추가해 주세요.");
 			return false;
 		}
-	}		
-		
-		<%--
-
-		
-		alert(id1);	
-		if(${list.id}==${sessionScope.mvo.id}){
-			alert("이미 리뷰를 작성한 영화입니다.");
-			return false;
-		}
-		--%>
-		<%--WritePostController.do--%>
-
+	}
 </script>
