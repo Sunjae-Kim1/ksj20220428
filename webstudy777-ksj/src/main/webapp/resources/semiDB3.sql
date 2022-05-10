@@ -52,6 +52,8 @@ insert into seat values(1, 65, 1);
  	review CLOB,
  	CONSTRAINT fk_member_movie PRIMARY  KEY (id, movieNo)
  )
+ 
+ insert into review values('java', 1, 4, '볼 만 하네요');
 
 DROP TABLE timetable;
 
@@ -118,7 +120,19 @@ insert into booking values(booking_seq.nextval, (
 
 select bookNo, timeTableNo, seatNo, to_date(booktime, 'yy.mm.dd hh24:mi:ss') from booking where id='java';
 
+select bookNo, timeTableNo, seatNo, bookTime from booking where id='java' order by bookTime;
+
 select filmNo, showTime from timeTable where timeTableNo=5;
 
 select * from booking;
 
+select * from review;
+
+select nvl(AVG(star),0) as avgStar, filmNo,filmName, openDate
+from(
+	select r.star, f.filmNo, f.filmName, f.openDate
+	from review r 
+	right outer join film f on r.movieNo=f.filmNo
+	) 
+where filmNo between 1 and 3 group by filmNo, filmName, openDate
+order by openDate desc

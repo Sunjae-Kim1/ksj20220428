@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
@@ -35,9 +36,9 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(AVG(star),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
+			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
 					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName "
-					+ "order by filmNo asc";
+					+ "order by avgStar desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
@@ -163,5 +164,59 @@ public class FilmDAO {
 			closeAll(rs, pstmt, con);
 		}
 		return totalPostCount;
+	}
+	public ArrayList<ReviewVO> orderByFilmName(Pagination pagination) throws SQLException {
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
+					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
+					+ "order by filmName";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pagination.getStartRowNumber());
+			pstmt.setInt(2, pagination.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FilmVO fvo = new FilmVO();
+				fvo.setFilmNO(rs.getInt("filmNo"));
+				fvo.setFilmName(rs.getString("filmName"));
+				ReviewVO vo = new ReviewVO(rs.getInt(1),null, fvo,null);
+				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
+				list.add(vo);
+			}
+		} finally{
+			closeAll(rs, pstmt, con);
+		}
+		return list;
+	}
+	public ArrayList<ReviewVO> orderByOpenDate(Pagination pagination) throws SQLException, ParseException {
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
+					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
+					+ "order by openDate desc";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pagination.getStartRowNumber());
+			pstmt.setInt(2, pagination.getEndRowNumber());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				FilmVO fvo = new FilmVO();
+				fvo.setFilmNO(rs.getInt("filmNo"));
+				fvo.setFilmName(rs.getString("filmName"));
+				ReviewVO vo = new ReviewVO(rs.getInt(1),null, fvo,null);
+				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
+				list.add(vo);
+			}
+		} finally{
+			closeAll(rs, pstmt, con);
+		}
+		return list;
 	}
 }

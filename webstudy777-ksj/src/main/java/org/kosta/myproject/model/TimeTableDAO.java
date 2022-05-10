@@ -98,7 +98,7 @@ public class TimeTableDAO {
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select bookNo, timeTableNo, seatNo, bookTime from booking where id=?";
+			String sql = "select bookNo, timeTableNo, seatNo, bookTime from booking where id=? order by bookTime";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mvo.getId());
 			rs=pstmt.executeQuery();

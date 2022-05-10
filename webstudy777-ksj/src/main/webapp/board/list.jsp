@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <center><h3>현재상영작</h3></center>
+<div align="right">
+<form action="OrderByListController.do">
+<button type= "button" name="avgStar" onclick="location.href='ListController.do'">평점</button>
+<button type= "submit" name="filmName">제목</button>
+<button type= "submit" name="openDate">신작</button>
+</form>
+</div>
+
 <table class="table table-bordered table-hover boardlist">
 	<thead>
 		<tr style="background-color: #4dff4d ">

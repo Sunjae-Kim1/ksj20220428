@@ -12,10 +12,10 @@
 </form>
 <script type="text/javascript">
 	function checkForm() {
-		if(document.getElementsById("flag").value!=document.getElementsById("id").value){
-			alert("아이디 중복확인하세요!");
-			return false;		
-		}		
+		if(document.getElementById("flag").value!=document.getElementById("id").value){
+			alert("아이디 중복을 확인하세요");
+			return false;
+		}
 	}
 	function checkId() {
 		let mid = document.getElementById("id").value;
