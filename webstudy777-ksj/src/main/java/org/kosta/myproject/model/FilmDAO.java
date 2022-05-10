@@ -104,7 +104,7 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
+			String sql = "select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
 					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
 					+ "order by filmName";
 			pstmt = con.prepareStatement(sql);
@@ -115,7 +115,7 @@ public class FilmDAO {
 				FilmVO fvo = new FilmVO();
 				fvo.setFilmNO(rs.getInt("filmNo"));
 				fvo.setFilmName(rs.getString("filmName"));
-				ReviewVO vo = new ReviewVO(rs.getInt(1),null, fvo,null);
+				ReviewVO vo = new ReviewVO(rs.getFloat(1),null, fvo,null);
 				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
 				list.add(vo);
 			}
@@ -131,7 +131,7 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(AVG(star),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
+			String sql = "select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
 					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
 					+ "order by openDate desc";
 			pstmt = con.prepareStatement(sql);
@@ -142,7 +142,7 @@ public class FilmDAO {
 				FilmVO fvo = new FilmVO();
 				fvo.setFilmNO(rs.getInt("filmNo"));
 				fvo.setFilmName(rs.getString("filmName"));
-				ReviewVO vo = new ReviewVO(rs.getInt(1),null, fvo,null);
+				ReviewVO vo = new ReviewVO(rs.getFloat(1),null, fvo,null);
 				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
 				list.add(vo);
 			}
