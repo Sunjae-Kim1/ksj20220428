@@ -16,7 +16,8 @@
 <title>KOSTA CINEMA</title>
   <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background-image: url('images/cinema.jpg')" >
+
+<body style="background-image: url('images/cinema.jpg') ; background-attachment: fixed;">
 
 			<c:import url="header.jsp"></c:import>
 	<div class="row">
