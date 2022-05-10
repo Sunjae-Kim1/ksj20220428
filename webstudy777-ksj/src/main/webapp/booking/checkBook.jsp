@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>예매확인</title>
 </head>
 <body>
 <div><h4>예매 내역</h4></div>
@@ -32,7 +32,7 @@
 				<td>${bookTimeList[status.index]}
 				<form action="CancelBookController.do" method="post">
 					<input type="hidden" name="bookNo" value="${list.bookNo}">
-					<button type="submit" onclick="return confirmCancelBook()">취소하기</button>
+					<button type="submit" onclick="return confirmCancelBook()"class="btn btn-danger my-2">취소하기</button>
 				</form>
 				</td>
 		</tr>

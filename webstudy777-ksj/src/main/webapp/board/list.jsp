@@ -12,10 +12,9 @@
 
 <div align="right">
 	<form action="OrderByListController.do">
-		<button type="button" name="avgStar"
-			onclick="location.href='ListController.do'">평점</button>
-		<button type="submit" name="filmName">제목</button>
-		<button type="submit" name="openDate">신작</button>
+		<button type="button" name="avgStar" onclick="location.href='ListController.do'" class="btn btn-light my-2">평점</button>
+		<button type="submit" name="filmName" class="btn btn-secondary my-2">제목</button>
+		<button type="submit" name="openDate" class="btn btn-dark my-2">신작</button>
 	</form>
 </div>
 
@@ -25,7 +24,7 @@
 	
 		<c:forEach items="${list}" var="fvo">
 			<tr style="background-color: #333333">		
-				<td class="card-body">
+				<td class="card-body" width=30vw height=auto>
 				<div class="card shadow-sm">
 					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
 					<%-- 
@@ -50,7 +49,7 @@
 					</div>
 
 				</td>
-				<td class="card-body">
+				<td class="card-body" width=30vw height=auto>
 				<div class="card shadow-sm">
 					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
 					<%-- 
@@ -75,7 +74,7 @@
 					</div>
 
 				</td>
-				<td class="card-body">
+				<td class="card-body" width=30vw height=auto>
 				<div class="card shadow-sm">
 					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
 					<%-- 
