@@ -22,9 +22,13 @@
 	<c:forEach items="${list}" var="fvo">
 		<tr style="background-color: #ffff66 ">
 			<td>
+			<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
+			<%-- 
 				<c:import url="images.jsp">
 				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
 				</c:import>
+			--%>
+			<img src="images/${fvo.filmVO.filmNO}.gif">	
 			</td>
 			<%-- 
 				로그인상태일때만 title에 링크부여, PostDetailController.do?쿼리스트링 으로 pk인 게시물 no가 서버로 전달
