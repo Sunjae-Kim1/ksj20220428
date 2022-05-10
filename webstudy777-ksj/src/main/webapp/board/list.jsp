@@ -22,17 +22,12 @@
 <table class="table table-bordered table-hover boardlist">
 	<tbody>
 	
-	
+	<tr style="background-color: #333333">
 		<c:forEach items="${list}" var="fvo">
-			<tr style="background-color: #333333">		
+			
 				<td class="card-body">
 				<div class="card shadow-sm">
-					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
-					<%-- 
-				<c:import url="images.jsp">
-				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
-				</c:import>
-			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
+				 <img src="images/${fvo.filmVO.filmNO}.gif">
 					<div class="d-flex justify-content-between align-items-center">
 
 						<c:choose>
@@ -50,57 +45,9 @@
 					</div>
 
 				</td>
-				<td class="card-body">
-				<div class="card shadow-sm">
-					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
-					<%-- 
-				<c:import url="images.jsp">
-				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
-				</c:import>
-			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
-					<div class="d-flex justify-content-between align-items-center">
-
-						<c:choose>
-							<c:when test="${sessionScope.mvo==null}">
-								<p class="card-text">${fvo.filmVO.filmName}</p>
-							</c:when>
-							<c:otherwise>
-								<p class="card-text">${fvo.filmVO.filmName}</p>
-								<a type="button" class="btn btn-sm btn-outline-dark"
-									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
-									class="card-text">상세페이지로</a>
-							</c:otherwise>
-						</c:choose>
-					</div> <small class="text-muted">☆:${fvo.star}</small>
-					</div>
-
-				</td>
-				<td class="card-body">
-				<div class="card shadow-sm">
-					<%--<a href="${pageContext.request.contextPath}/member/find-form.jsp">member find-form</a><br> --%>
-					<%-- 
-				<c:import url="images.jsp">
-				<c:param name="filmNO" value="${fvo.filmVO.filmNO}"/>
-				</c:import>
-			--%> <img src="images/${fvo.filmVO.filmNO}.gif">
-					<div class="d-flex justify-content-between align-items-center">
-
-						<c:choose>
-							<c:when test="${sessionScope.mvo==null}">
-								<p class="card-text">${fvo.filmVO.filmName}</p>
-							</c:when>
-							<c:otherwise>
-								<p class="card-text">${fvo.filmVO.filmName}</p>
-								<a type="button" class="btn btn-sm btn-outline-dark"
-									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
-									class="card-text">상세페이지로</a>
-							</c:otherwise>
-						</c:choose>
-					</div> <small class="text-muted">☆:${fvo.star}</small>
-					</div>
-
-				</td>
+		
 		</c:forEach>
+		</tr>
 	</tbody>
 </table>
 <%--

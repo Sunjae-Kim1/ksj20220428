@@ -32,6 +32,8 @@
 				<td>${bookTimeList[status.index]}
 				<form action="CancelBookController.do" method="post">
 					<input type="hidden" name="bookNo" value="${list.bookNo}">
+					<input type="hidden" name="filmName" value="${list.timeTableVO.filmVO.filmName }">				
+					<input type="hidden" name="showTime" value="${showTimeList[status.index] }">				
 					<button type="submit" onclick="return confirmCancelBook()">취소하기</button>
 				</form>
 				</td>

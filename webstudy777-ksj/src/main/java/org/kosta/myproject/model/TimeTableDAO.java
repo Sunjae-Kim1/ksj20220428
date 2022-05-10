@@ -58,7 +58,7 @@ public class TimeTableDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select min(showtime), max(showtime)");
+			sql.append("select to_char(sysdate, 'yy-mm-dd') as today, max(showtime) ");
 			sql.append("from ( ");
 			sql.append("select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable where filmNo=?) ");
 			pstmt= con.prepareStatement(sql.toString());
