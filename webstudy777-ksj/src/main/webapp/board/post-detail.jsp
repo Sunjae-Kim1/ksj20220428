@@ -20,9 +20,7 @@
 <tbody>
 <tr>
 	<td>
-		<c:import url="images.jsp">
-		<c:param name="filmNO" value="${fvo.filmNO}"/>
-		</c:import>
+		<img src="images/${fvo.filmNO}.gif">
 	</td>
 	<td colspan="5">
 	<%-- html pre tag : db에 저장된 글 형식 그대로 표현, tip : pre tag 라인은 행 변경 없이 한 라인으로 표현해야한다. --%>
