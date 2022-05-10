@@ -2,24 +2,24 @@ package org.kosta.myproject.model;
 
 public class ReviewVO {
 	
-	private int star;
+	private float star;
 	private String review;
 	private FilmVO filmVO;
 	private MemberVO memberVO;
 	public ReviewVO() {
 		super();
 	}
-	public ReviewVO(int star, String review, FilmVO filmVO, MemberVO memberVO) {
+	public ReviewVO(float star, String review, FilmVO filmVO, MemberVO memberVO) {
 		super();
 		this.star = star;
 		this.review = review;
 		this.filmVO = filmVO;
 		this.memberVO = memberVO;
 	}
-	public int getStar() {
+	public float getStar() {
 		return star;
 	}
-	public void setStar(int star) {
+	public void setStar(float star) {
 		this.star = star;
 	}
 	public String getReview() {

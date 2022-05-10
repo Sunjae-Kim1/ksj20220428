@@ -44,7 +44,7 @@ public class FilmDAO {
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				ReviewVO vo = new ReviewVO(rs.getInt(1),null,new FilmVO(rs.getInt(2),rs.getString(3),null),null);
+				ReviewVO vo = new ReviewVO(rs.getFloat(1),null,new FilmVO(rs.getInt(2),rs.getString(3),null),null);
 				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
 				list.add(vo);
 			}

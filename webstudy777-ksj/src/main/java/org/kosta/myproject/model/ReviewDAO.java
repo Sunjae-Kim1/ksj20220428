@@ -37,7 +37,7 @@ public class ReviewDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, vo.getMemberVO().getId());
 			pstmt.setInt(2, vo.getFilmVO().getFilmNO());
-			pstmt.setInt(3, vo.getStar());
+			pstmt.setFloat(3, vo.getStar());
 			pstmt.setString(4, vo.getReview());
 			pstmt.executeUpdate();
 		} finally{
