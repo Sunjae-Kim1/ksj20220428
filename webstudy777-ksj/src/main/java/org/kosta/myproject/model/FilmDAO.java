@@ -35,7 +35,7 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(AVG(star),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
+			String sql = "select nvl(ROUND(AVG(star),1),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
 					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName "
 					+ "order by filmNo asc";
 			pstmt = con.prepareStatement(sql);
@@ -43,7 +43,7 @@ public class FilmDAO {
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				ReviewVO vo = new ReviewVO(rs.getInt(1),null,new FilmVO(rs.getInt(2),rs.getString(3),null),null);
+				ReviewVO vo = new ReviewVO(rs.getFloat(1),null,new FilmVO(rs.getInt(2),rs.getString(3),null),null);
 				//vo = new PostVO(rs.getInt(1),rs.getString(2),null,rs.getInt(5),rs.getString(4),new MemberVO(null,null,rs.getString(3)));
 				list.add(vo);
 			}
@@ -78,74 +78,6 @@ public class FilmDAO {
 		}
 		return vo;
 	}
-	
-	/*
-	public void posting(FilmVO vo) throws SQLException {
-		PreparedStatement pstmt = null;
-		Connection con = null;
-		try {
-			con = dataSource.getConnection();
-			String sql ="insert into board(board_no,title,content,time_posted,id) values(board_seq.nextval,?,?,sysdate,?)";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setString(2, vo.getContent());
-			pstmt.setString(3, vo.getMemberVO().getId());
-			pstmt.executeUpdate();
-		} finally{
-			closeAll(pstmt, con);
-		}
-		//insert into board(board_no,title,content,time_posted,id) values(board_seq.nextval,?,?,sysdate,?);
-	}
-	*/
-	/*
-	public void updateHits(String no) throws SQLException {
-		PreparedStatement pstmt = null;
-		Connection con = null;
-		try {
-			con = dataSource.getConnection();
-			String sql ="UPDATE board SET hits =hits+1 WHERE board_no = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, no);
-			pstmt.executeUpdate();
-		} finally{
-			closeAll(pstmt, con);
-		}
-	}
-	*/
-	/*
-	public void deletePostByNo(String no) throws SQLException {
-		PreparedStatement pstmt = null;
-		Connection con = null;
-		try {
-			con = dataSource.getConnection();
-			String sql ="DELETE FROM board where board_no=?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, no);
-			pstmt.executeUpdate();
-		} finally{
-			closeAll(pstmt, con);
-		}
-	}
-	*/
-	/*
-	public void updatePost(FilmVO vo) throws SQLException {
-		PreparedStatement pstmt = null;
-		Connection con = null;
-		try {
-			con = dataSource.getConnection();
-			String sql ="UPDATE board SET title =?, content=?,time_posted=sysdate WHERE  board_no = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setString(2, vo.getContent());
-			pstmt.setInt(3, vo.getNo());
-			System.out.println(vo);
-			pstmt.executeUpdate();
-		} finally{
-			closeAll(pstmt, con);
-		}
-		//UPDATE board SET title = '듀얼', content='리스트',time_posted=sysdate WHERE  board_no = '1';
-	}
-	*/
 	public int getTotalPostCount() throws SQLException {
 		int totalPostCount = 0;
 		ResultSet rs = null;

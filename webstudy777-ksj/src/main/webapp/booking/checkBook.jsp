@@ -9,7 +9,6 @@
 </head>
 <body>
 <div><h4>예매 내역</h4></div>
-<div align="right"><a href="ListController.do">홈으로</a></div>
 <br><br>
 <table class="table table-bordered">
 	<thead>
@@ -28,22 +27,16 @@
 				<td>${list.bookNo }</td>
 				<td>${list.timeTableVO.filmVO.filmName }</td>
 				<td>${showTimeList[status.index] }</td>
-				<td>${list.seatNo }</td>
-				<td>${bookTimeList[status.index]}
-				<form action="CancelBookController.do" method="post">
-					<input type="hidden" name="bookNo" value="${list.bookNo}">
-					<button type="submit" onclick="return confirmCancelBook()">취소하기</button>
-				</form>
-				</td>
+				<td>${list.seatNO }</td>
+				<td>${bookTimeList[status.index]}</td>
+			
 		</tr>
 		</c:forEach>
 	</tbody>
-</table>
-<script type="text/javascript">
-	function confirmCancelBook(){
-		return confirm("예매된 내역을 취소하시겠습니까?");
-	}
-</script>
+<%-- <td><c:forEach items="${showTimeList}" var="string">
+					${string}
+				</c:forEach></td> --%>
 
+</table>
 </body>
 </html>

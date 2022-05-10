@@ -19,6 +19,7 @@ public class CheckBookingController implements Controller {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO) session.getAttribute("mvo");
 		ArrayList<BookingVO> bookList= TimeTableDAO.getInstance().findBookById(mvo);
+		System.out.println("책리스트="+bookList);
 		
 		ArrayList<String> bookTimeList = new ArrayList<String>();
 		for(BookingVO vo : bookList) {

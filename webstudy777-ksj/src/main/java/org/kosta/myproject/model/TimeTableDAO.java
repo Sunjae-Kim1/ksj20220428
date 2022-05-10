@@ -50,26 +50,7 @@ public class TimeTableDAO {
 		}
 		return list;
 	}
-	public String findFilmNameByFilmNo(String filmNo) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		String filmName =null;
-		try {
-			con=dataSource.getConnection();
-			String sql = "SELECT filmName FROM film WHERE filmNo=?";
-			pstmt= con.prepareStatement(sql);
-			pstmt.setString(1, filmNo);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				filmName = rs.getString("filmName");
-			}
-		}finally {
-			closeAll(rs,pstmt, con);
-		}
-		return filmName;
-	}
-	public ArrayList<String> timeTableMinMax() throws SQLException {
+	public ArrayList<String> timeTableMinMax(String filmNO) throws SQLException {
 		ArrayList<String> list = new ArrayList<String>();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -77,10 +58,11 @@ public class TimeTableDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select to_char(sysdate, 'yy-mm-dd') as today, max(showtime) ");
+			sql.append("select min(showtime), max(showtime)");
 			sql.append("from ( ");
-			sql.append("select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable) ");
+			sql.append("select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable where filmNo=?) ");
 			pstmt= con.prepareStatement(sql.toString());
+			pstmt.setString(1, filmNO);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				list.add(rs.getString(1));
@@ -90,6 +72,49 @@ public class TimeTableDAO {
 			closeAll(rs,pstmt, con);
 		}
 		return list;
+	}
+	public ArrayList<String> findBookTimeByDay(String filmNo, String day) throws SQLException {
+		ArrayList<String> list = new ArrayList<String>();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select to_char(showtime, 'hh24:mi:ss') ");
+			sql.append("from TIMETABLE ");
+			sql.append("where filmNo=? and to_char(showtime, 'yy-mm-dd')=? ");
+			pstmt= con.prepareStatement(sql.toString());
+			pstmt.setString(1, filmNo);
+			pstmt.setString(2, day);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getString(1));
+			}
+		}finally {
+			closeAll(rs,pstmt, con);
+		}
+		return list;
+	}
+	public String findtimeTableNO(String movieNo, String picktime) throws SQLException {
+		String picktimeTableNo = null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		try {
+			con=dataSource.getConnection();
+			String sql = "select timetableNo from timetable WHERE filmNo=? and showTime= to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
+			pstmt= con.prepareStatement(sql.toString());
+			pstmt.setString(1, movieNo);
+			pstmt.setString(2, picktime);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				picktimeTableNo = rs.getString(1);
+			}
+		}finally {
+			closeAll(rs,pstmt, con);
+		}
+		return picktimeTableNo;
 	}
 	public ArrayList<BookingVO> findBookById(MemberVO mvo) throws SQLException, ParseException {
 		ArrayList<BookingVO> list = new ArrayList<BookingVO>();
@@ -103,26 +128,31 @@ public class TimeTableDAO {
 			pstmt.setString(1, mvo.getId());
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
+				ArrayList<String> filmNoShowTimeList = new ArrayList<String>();
 				TimeTableVO tvo = new TimeTableVO();
+				FilmVO fvo = new FilmVO();
+				BookingVO bvo = new BookingVO();
+				String filmNo = null;
+				String sShow = null;
+				String filmName = null;
+				String sbookTime = null;
 				String timeTableNo =rs.getString("timeTableNo");
-				ArrayList<String> filmNoShowTimeList = TimeTableDAO.getInstance().findFilmNoShowTimeByTimeTableNo(timeTableNo);
-				String filmNo = filmNoShowTimeList.get(0);
-				String sShow = filmNoShowTimeList.get(1);
+				filmNoShowTimeList = TimeTableDAO.getInstance().findFilmNoShowTimeByTimeTableNo(timeTableNo);
+				filmNo = filmNoShowTimeList.get(0);
+				sShow = filmNoShowTimeList.get(1);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date showTime = format.parse(sShow);
-				String filmName = TimeTableDAO.getInstance().findFilmNameByFilmNo(filmNo);				
-				int filmNO = Integer.parseInt(filmNo);
-				FilmVO fvo = new FilmVO(filmNO, filmName, null);
+				filmName = TimeTableDAO.getInstance().findFilmNameByFilmNo(filmNo);				
+				fvo.setFilmName(filmName);
 				tvo.setTimeTableNO(rs.getInt(2));
 				tvo.setFilmVO(fvo);
 				tvo.setShowTime(showTime);
-				BookingVO bvo = new BookingVO();
 				bvo.setBookNo(rs.getInt(1));
-				String sbookTime =rs.getString(4);
+				sbookTime =rs.getString(4);
 				Date bookTime = format.parse(sbookTime);
 				bvo.setBookTime(bookTime);
 				bvo.setMemberVO(mvo);
-				bvo.setseatNo(rs.getString(3));
+				bvo.setseatNO(rs.getString(3));
 				bvo.setTimeTableVO(tvo);				
 				list.add(bvo);
 			}
@@ -151,44 +181,23 @@ public class TimeTableDAO {
 		}
 		return list;
 	}
-	
-	public ArrayList<String> duplicateFilm(String timetableNo) throws SQLException {
-		ArrayList<String> dupl = new ArrayList<String>() ;
+	public String findFilmNameByFilmNo(String filmNo) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
+		String filmName =null;
 		try {
 			con=dataSource.getConnection();
-			String sql = "select seatNo from booking where timetableNo = ?";
+			String sql = "SELECT filmName FROM film WHERE filmNo=?";
 			pstmt= con.prepareStatement(sql);
-			pstmt.setString(1, timetableNo);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				dupl.add(rs.getString(1));
-			}
-		}finally {
-			closeAll(rs,pstmt, con);
-		}
-		return dupl;
-	}
-	public String findtimeTableNO(String movieNo, String picktime) throws SQLException {
-		String picktimeTableNo = null;
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs = null;
-		try {
-			con=dataSource.getConnection();
-			String sql = "select timetableNo from timetable WHERE filmNo=? and showTime= to_date(?, 'yyyy-mm-dd hh24:mi:ss')";
-			pstmt= con.prepareStatement(sql.toString());
-			pstmt.setString(1, movieNo);
-			pstmt.setString(2, picktime);
+			pstmt.setString(1, filmNo);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				picktimeTableNo = rs.getString(1);
+				filmName = rs.getString("filmName");
 			}
 		}finally {
 			closeAll(rs,pstmt, con);
 		}
-		return picktimeTableNo;
+		return filmName;
 	}
 }

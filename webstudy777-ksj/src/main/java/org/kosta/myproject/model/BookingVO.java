@@ -5,17 +5,17 @@ import java.util.Date;
 public class BookingVO {
 	private int bookNo;
 	private Date bookTime;
-	private String seatNo;
+	private String seatNO;
 	private MemberVO memberVO;
 	private TimeTableVO timeTableVO;
 	public BookingVO() {
 		super();
 	}
-	public BookingVO(int bookNo, Date bookTime, String seatNo, MemberVO memberVO, TimeTableVO timeTableVO) {
+	public BookingVO(int bookNo, Date bookTime, String seatNO, MemberVO memberVO, TimeTableVO timeTableVO) {
 		super();
 		this.bookNo = bookNo;
 		this.bookTime = bookTime;
-		this.seatNo = seatNo;
+		this.seatNO = seatNO;
 		this.memberVO = memberVO;
 		this.timeTableVO = timeTableVO;
 	}
@@ -31,11 +31,11 @@ public class BookingVO {
 	public void setBookTime(Date bookTime) {
 		this.bookTime = bookTime;
 	}
-	public String getseatNo() {
-		return seatNo;
+	public String getseatNO() {
+		return seatNO;
 	}
-	public void setseatNo(String seatNo) {
-		this.seatNo = seatNo;
+	public void setseatNO(String seatNO) {
+		this.seatNO = seatNO;
 	}
 	public MemberVO getMemberVO() {
 		return memberVO;
@@ -51,7 +51,7 @@ public class BookingVO {
 	}
 	@Override
 	public String toString() {
-		return "BookingVO [bookNo=" + bookNo + ", bookTime=" + bookTime + ", seatNo=" + seatNo + ", memberVO="
+		return "BookingVO [bookNo=" + bookNo + ", bookTime=" + bookTime + ", seatNO=" + seatNO + ", memberVO="
 				+ memberVO + ", timeTableVO=" + timeTableVO + "]";
 	}
 }  

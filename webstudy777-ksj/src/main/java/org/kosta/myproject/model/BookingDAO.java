@@ -63,18 +63,5 @@ public class BookingDAO {
 		}
 		return dupl;
 	}
-	public void cancleBook(String bookNo) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try {
-			con=dataSource.getConnection();
-			String sql = "delete booking where bookNo=?";
-			pstmt= con.prepareStatement(sql);
-			pstmt.setString(1, bookNo);
-			pstmt.executeUpdate();
-		}finally {
-			closeAll(pstmt, con);
-		}
-	}
 	
 }

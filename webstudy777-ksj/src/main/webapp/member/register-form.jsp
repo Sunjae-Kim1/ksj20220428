@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <form method="post" action="RegisterMemberController.do" onsubmit="return checkForm()">
 <input type="hidden" id="flag" value="">
 <input type="text" name="id" id="id" placeholder="아이디" required="required">
@@ -12,7 +13,7 @@
 </form>
 <script type="text/javascript">
 	function checkForm() {
-		if(document.getElementsById("flag").value!=document.getElementsById("id").value){
+		if(document.getElementById("flag").value!=document.getElementById("id").value){
 			alert("아이디 중복확인하세요!");
 			return false;		
 		}		

@@ -15,16 +15,21 @@ public class PostDetailController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//영화 내용 가져오기
-				FilmVO fvo = new FilmVO();
-				String filmNO = request.getParameter("filmNO");
-				fvo = FilmDAO.getInstance().findPostByNo(filmNO);
-				//영화 리뷰 가져오기
-				ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
-				list=ReviewDAO.getInstance().findReview(filmNO);
-				request.setAttribute("list", list);
-				request.setAttribute("fvo", fvo);
-				request.setAttribute("url","board/post-detail.jsp" );
-				return "layout.jsp";
+		FilmVO fvo = new FilmVO();
+		String filmNO = request.getParameter("filmNO");
+		fvo = FilmDAO.getInstance().findPostByNo(filmNO);
+		//영화 리뷰 가져오기
+		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
+		ArrayList<String> idlist = new ArrayList<String>();
+		list=ReviewDAO.getInstance().findReview(filmNO);
+		for(int i=0;i<list.size();i++) {
+			idlist.add(list.get(i).getMemberVO().getId());
+		}
+		request.setAttribute("idlist", idlist);
+		request.setAttribute("list", list);
+		request.setAttribute("fvo", fvo);
+		request.setAttribute("url","board/post-detail.jsp" );
+		return "layout.jsp";
 	}
 
 }

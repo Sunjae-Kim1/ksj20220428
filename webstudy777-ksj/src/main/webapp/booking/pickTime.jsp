@@ -10,10 +10,10 @@
 <select id="time" required="required">
 	<option>예매일 선택 후 시간을 선택하세요</option>
 </select>
-<button type="submit" onclick="return seatView()" >좌석 선택하기</button>
 <form id="SeatForm" action="PickSeatController.do" method="post">
 	<input type="hidden" name="picktime" value="">
 	<input type="hidden" name="movieNo" value="${filmNO}">
+	<button type="submit" onclick="return seatView()" >좌석 선택하기</button>
 </form>
 <script type="text/javascript">
 function test(){
@@ -25,17 +25,17 @@ function test(){
 	 	var dayTime = "${t}";
 	 	var day = dayTime.substr(0,10);
 	 	var time = dayTime.substr(day.length+1, 5);
-	 	var v = $('#bookTime_date').val();
+	 	var v = document.getElementById("bookTime_date").value;
 	 	if(day==v){
+	 		bookTimeList.push(time);
 	 		var opt = document.createElement("option");
-		 	opt.innerHTML = time;
-		 	target.appendChild(opt);
-	 	}
+	 		opt.value = time;
+	 		opt.innerHTML = time;
+	 		target.appendChild(opt);
+	 		}
 	 </c:forEach>
-	 if(target.options.length==0){
-		 alert("상영하는 영화가 없습니다. 다른 날짜를 선택하세요");
-	 }
-}
+		}
+/*
 function seatView(){
 	var day = $('#bookTime_date').val();
 	var time = $('#time').val();
@@ -43,13 +43,27 @@ function seatView(){
 	$('input[name=picktime]').attr('value',daytime);
 	if(time.length==5){
 		document.getElementById("SeatForm").submit();
-		return true;
 	}else{
+		alert(time.length);
 		alert("예매일시를 선택하세요");
 		return false;
 	}
 }
- 
+ */
+	function seatView(){
+		var day = document.getElementById("bookTime_date").value;
+		var time = document.getElementById("time").value;
+		alert(time);
+		alert(time.length);
+		var daytime = day+" "+time;
+		if(time.length==5){
+			$('input[name=picktime]').attr('value',daytime);
+			return true;
+		}else{
+			alert("예매일시를 선택하세요");
+			return false;
+		}
+	}
 </script>
 <%--
 $('input[name=picktime]').attr('value',v);
