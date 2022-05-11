@@ -44,7 +44,6 @@
 								<p class="card-text">${fvo.filmVO.filmName}</p>
 							</c:when>
 							<c:otherwise>
-								<p class="card-text">${fvo.filmVO.filmName}</p>
 								<a type="button" class="btn btn-sm btn-outline-dark"
 									href="PostDetailController.do?filmNO=${fvo.filmVO.filmNO}"
 									class="card-text">상세페이지로</a>
