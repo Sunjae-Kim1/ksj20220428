@@ -2,14 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
-.table{
+.table,th,tr{
+  margin-left:auto; 
+  margin-right:auto;
   width: 100px;
   height: 100px;
-  background-color: skyblue;
-  border-collapse: collapse;
-  border-radius: 10px;
-  border-style: hidden;
-  box-shadow: 0 0 0 1px #000;
 }
 </style>
 <br>
