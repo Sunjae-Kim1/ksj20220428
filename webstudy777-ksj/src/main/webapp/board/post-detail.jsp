@@ -2,6 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--상세 게시글 보기 화면 --%>
+<style>
+.table{
+margin-left:auto;
+margin-right:auto;
+width:100%;
+height:auto;
+}
+</style>
+
 
 <input type="hidden" id="idlist" value="${idlist}">
 
@@ -20,7 +29,7 @@
 <tbody>
 <tr bgcolor="#FFFFFF">
 	<td>
-		<img src="images/${fvo.filmNO}.gif">
+		<img src="images/${fvo.filmNO}.gif" width=300px;>
 	</td>
 	<td colspan="5">
 	<%-- html pre tag : db에 저장된 글 형식 그대로 표현, tip : pre tag 라인은 행 변경 없이 한 라인으로 표현해야한다. --%>
@@ -35,10 +44,10 @@
 </table>
 
 <%--영화 리뷰 --%>
-<table class="table table-bordered table-hover boardlist">
+<table class="table table-bordered ">
 	<tbody>
 <c:forEach items="${list}" var="list">
-<tr style="background-color: #ffff66 ">
+<tr style="background-color: #EEEEEE ">
 	<td width="100">${list.memberVO.id }</td>
 	<td width="100">	${list.star} </td>
 	<td>	${list.review} </td>
