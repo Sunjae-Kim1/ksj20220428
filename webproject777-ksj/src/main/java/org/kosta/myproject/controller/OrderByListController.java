@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.kosta.myproject.model.FilmDAO;
 import org.kosta.myproject.model.Pagination;
@@ -13,6 +14,22 @@ public class OrderByListController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession(false);
+		String sort = request.getParameter("sort1");
+		String sorton = request.getParameter("sorton");
+		String opendate = "openDate";
+		String filmName = "filmName";
+		String avgStar = "avgStar";
+		if(session.getAttribute("sorting")==null) {
+			if(sort==null) {
+				session.setAttribute("sorting", avgStar);
+			}
+		}else{
+			if(sorton!=null) {
+			session.setAttribute("sorting", sort);
+			}
+		}	
+		String sort1 =(String) session.getAttribute("sorting");
 		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
 		//클라이언트로부터 페이지번호를 전달받는다. Pagination(dao.getTotalPostCount(),nowPage);
 		String pageNo = request.getParameter("pageNo");
@@ -23,12 +40,13 @@ public class OrderByListController implements Controller {
 			pagination=new Pagination(FilmDAO.getInstance().getTotalPostCount(),Integer.parseInt(pageNo));
 		}
 		//list.jsp에서 페이징처리를 하기위해 Pagination객체를 공유한다.
-		String filmName = request.getParameter("filmName");
-		String openDate = request.getParameter("openDate");
-		if(filmName==null) {
+
+		if(sort1.equals(opendate)) {
 			list = FilmDAO.getInstance().orderByOpenDate(pagination);
-		}else if(openDate==null) {
+		}else if(sort1.equals(filmName)) {
 			list = FilmDAO.getInstance().orderByFilmName(pagination);
+		}else{
+			list = FilmDAO.getInstance().findPostList(pagination);
 		}
 		request.setAttribute("pagination", pagination);
 		request.setAttribute("list", list);
