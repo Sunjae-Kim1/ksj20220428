@@ -5,8 +5,8 @@
 .table,th,tr{
   margin-left:auto; 
   margin-right:auto;
-  width: 100px;
-  height: 100px;
+  width: auto;
+  height: auto;
 }
 </style>
 <br>
@@ -35,7 +35,8 @@
 			
 				<td class="card-body">
 				<div class="card shadow-sm">
-				 <img src="images/${fvo.filmVO.filmNO}.gif">
+				 <img src="images/${fvo.filmVO.filmNO}.gif" width=300px height=auto>
+				 
 					<div class="d-flex justify-content-between align-items-center">
 
 						<c:choose>
