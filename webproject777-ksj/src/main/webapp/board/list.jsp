@@ -8,11 +8,26 @@
   width: auto;
   height: auto;
 }
+.broad{
+         background-color:	#FF8C00;
+               width: 400px;
+               padding: 30px;
+               margin: 40px;
+          border-radius: 60px 20px 60px 20px;
+          font-size: xx-large;
+          font-style:italic;
+          font-weight:bold;
+          color:white;
+          border: 7px solid red;
+  }
 </style>
 <br>
 <br>
+<br>
+<br>
 <center>
-	<h2>현재상영작</h2>
+	<span class="broad">현재상영작</span>
+	
 </center>
 <br>
 <br>
