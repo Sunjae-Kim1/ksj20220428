@@ -36,10 +36,18 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(ROUND(AVG(star),1),0)  as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r "
-					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName "
-					+ "order by avgStar desc";
-			pstmt = con.prepareStatement(sql);
+			StringBuilder sql = new StringBuilder();
+			sql.append("select avgStar, filmNo, filmName, rnum, openDate ");
+			sql.append("from( ");
+			sql.append("select ROW_NUMBER() OVER(ORDER BY avgStar DESC) as rnum, avgStar, filmNo, filmName, openDate ");
+			sql.append("	from ( ");
+			sql.append("select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo, filmName, openDate ");
+			sql.append("from( ");
+			sql.append("select r.star, f.filmNo, f.filmName, f.openDate ");
+			sql.append("from review r right outer join film f on r.movieNo=f.filmNo) ");
+			sql.append("group by filmNo, filmName, openDate)) ");
+			sql.append("where rnum between ? and ?");
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
@@ -104,10 +112,18 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
-					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
-					+ "order by filmName";
-			pstmt = con.prepareStatement(sql);
+			StringBuilder sql = new StringBuilder();
+			sql.append("select avgStar, filmNo, filmName, rnum, openDate ");
+			sql.append("from( ");
+			sql.append("select ROW_NUMBER() OVER(ORDER BY filmName) as rnum, avgStar, filmNo, filmName, openDate ");
+			sql.append("	from ( ");
+			sql.append("select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo, filmName, openDate ");
+			sql.append("from( ");
+			sql.append("select r.star, f.filmNo, f.filmName, f.openDate ");
+			sql.append("from review r right outer join film f on r.movieNo=f.filmNo) ");
+			sql.append("group by filmNo, filmName, openDate)) ");
+			sql.append("where rnum between ? and ?");
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();
@@ -131,10 +147,18 @@ public class FilmDAO {
 		Connection con = null;
 		try {
 			con = dataSource.getConnection();
-			String sql = "select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName from(select r.star, f.filmNo, f.filmName, openDate from review r "
-					+ "right outer join film f on r.movieNo=f.filmNo) where filmNo between ? and ? group by filmNo, filmName, openDate "
-					+ "order by openDate desc";
-			pstmt = con.prepareStatement(sql);
+			StringBuilder sql = new StringBuilder();
+			sql.append("select avgStar, filmNo, filmName, rnum, openDate ");
+			sql.append("from( ");
+			sql.append("select ROW_NUMBER() OVER(ORDER BY openDate DESC) as rnum, avgStar, filmNo, filmName, openDate ");
+			sql.append("	from ( ");
+			sql.append("select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo, filmName, openDate ");
+			sql.append("from( ");
+			sql.append("select r.star, f.filmNo, f.filmName, f.openDate ");
+			sql.append("from review r right outer join film f on r.movieNo=f.filmNo) ");
+			sql.append("group by filmNo, filmName, openDate)) ");
+			sql.append("where rnum between ? and ?");
+			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, pagination.getStartRowNumber());
 			pstmt.setInt(2, pagination.getEndRowNumber());
 			rs = pstmt.executeQuery();

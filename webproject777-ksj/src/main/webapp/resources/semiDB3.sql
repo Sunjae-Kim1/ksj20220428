@@ -245,12 +245,23 @@ from(
 where filmNo between 1 and 4 group by filmNo, filmName, openDate
 order by openDate desc
 
-select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName
+select avgStar, filmNo, filmName, rnum, openDate
 from(
-	select r.star, f.filmNo, f.filmName
-	from review r right outer join film f on r.movieNo=f.filmNo
-	) 
-where filmNo between 1 and 7 group by filmNo, filmName
-order by avgStar desc
+	select ROW_NUMBER() OVER(ORDER BY avgStar DESC) as rnum, avgStar, filmNo, filmName, openDate
+	from (
+		select nvl(ROUND(AVG(star),1),0) as avgStar, filmNo, filmName, openDate
+		from(
+			select r.star, f.filmNo, f.filmName, f.openDate
+			from review r right outer join film f on r.movieNo=f.filmNo
+			)
+		group by filmNo, filmName, openDate
+	)
+)
+where rnum between 1 and 7
+
+
+
+
+
 
 
