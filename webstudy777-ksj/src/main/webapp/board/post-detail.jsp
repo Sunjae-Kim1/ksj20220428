@@ -36,7 +36,7 @@ height:auto;
 	<pre><font size="4">
 	${fvo.content }
 
-	${fvo.ageLimit}세 관람가
+	시청연령 : ${fvo.ageLimit}세 관람가
 	</font></pre>
 	</td>
 </tr>
@@ -51,10 +51,10 @@ height:auto;
 	<td width="100">${list.memberVO.id }</td>
 	<td width="100">	${list.star} </td>
 	<td>	${list.review} </td>
-	<td width=150px;>
+	<td width="150">
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
-			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
+			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()" class="btn btn-danger">			
 		</c:when>
 	</c:choose>
 	</td>

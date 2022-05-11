@@ -17,7 +17,6 @@ public class DeleteReviewController implements Controller
         MemberVO vo = (MemberVO)session.getAttribute("mvo");
         String id = vo.getId();
         ReviewDAO.getInstance().DeleteReview(id);
-        request.setAttribute("url", (Object)"board/post-detail.jsp");
-        return "layout.jsp";
+        return "redirect:ListController.do";
     }
 }
