@@ -72,4 +72,19 @@ public class ReviewDAO {
 		}
 		return list;
 	}
+    public void DeleteReview(final String id) throws SQLException {
+        PreparedStatement pstmt = null;
+        Connection con = null;
+        try {
+            con = this.dataSource.getConnection();
+            final String sql = "DELETE FROM review WHERE id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, id);
+            pstmt.executeUpdate();
+        }
+        finally {
+            this.closeAll(pstmt, con);
+        }
+        this.closeAll(pstmt, con);
+    }
 }
