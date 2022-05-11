@@ -41,7 +41,6 @@
 
 						<c:choose>
 							<c:when test="${sessionScope.mvo==null}">
-								<p class="card-text">${fvo.filmVO.filmName}</p>
 							</c:when>
 							<c:otherwise>
 								<a type="button" class="btn btn-sm btn-outline-dark"
