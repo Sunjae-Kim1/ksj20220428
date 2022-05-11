@@ -58,15 +58,23 @@ public class TimeTableDAO {
 		try {
 			con=dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select to_char(sysdate, 'yy-mm-dd') as today, max(showtime) ");
+			sql.append("select to_char(sysdate, 'yy-mm-dd') as today, min(showtime), max(showtime) ");
 			sql.append("from ( ");
 			sql.append("select TO_CHAR(showTime,'yy-mm-dd') as showtime from timetable where filmNo=?) ");
 			pstmt= con.prepareStatement(sql.toString());
 			pstmt.setString(1, filmNO);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				list.add(rs.getString(1));
-				list.add(rs.getString(2));
+				String today = rs.getString("today").replace("-", "");
+				String min = rs.getString(2).replace("-", "");
+				if(today.compareTo(min)==1) {
+					list.add(rs.getString(1));
+					list.add(rs.getString(3));
+				}else {
+					list.add(rs.getString(2));
+					list.add(rs.getString(3));
+				}
+				
 			}
 		}finally {
 			closeAll(rs,pstmt, con);

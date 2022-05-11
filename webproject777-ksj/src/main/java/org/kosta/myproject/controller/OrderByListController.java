@@ -35,5 +35,4 @@ public class OrderByListController implements Controller {
 		request.setAttribute("url", "board/list.jsp");
 		return "layout.jsp";
 	}
-
 }
