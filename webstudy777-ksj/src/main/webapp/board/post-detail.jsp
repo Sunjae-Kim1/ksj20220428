@@ -50,12 +50,13 @@ height:auto;
 <tr style="background-color: #EEEEEE ">
 	<td width="100">${list.memberVO.id }</td>
 	<td width="100">	${list.star} </td>
-	<td>	${list.review} </td>
+	<td>	${list.review} 
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
 			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
 		</c:when>
 	</c:choose>
+	</td>
 </tr>			
 </c:forEach>
 </tbody>
