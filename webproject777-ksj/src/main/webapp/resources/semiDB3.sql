@@ -204,36 +204,15 @@ where r.movieNo = f.filmNo
 --select r.rnum,r.movieNo,f.filmName from ( select nvl(AVG(star),0) as rnum,movieNo from review where movieNo=1 group by movieNo) r,film f where r.movieNo = f.filmNo
 --select filmNO,filmName,director from film where filmNO between ? and ?
 
-select rnum, avgStar, filmNo, filmName
+select nvl(AVG(star),0) as savg, filmNo,filmName
 from(
-	select ROW_NUMBER() OVER(order by filmName ) as rnum, avgStar, filmNo, filmName
-	from(
-		select  nvl(ROUND(AVG(star),1),0) as avgStar, filmNo,filmName, openDate
-		from(
-		select r.star, f.filmNo, f.filmName, f.openDate
-		from review r
-		right outer join film f on r.movieNo=f.filmNo
-		)
-		group by filmNo, filmName, openDate
-	)
+select r.star, f.filmNo, f.filmName
+from review r
+right outer join film f on r.movieNo=f.filmNo
 )
-where rnum between 4 and 6
-select openDate, filmName from film
-order by openDate;
-
-select  nvl(ROUND(AVG(star),1),0) as savg, filmNo,filmName
-from(
-	select r.star, f.filmNo, f.filmName
-	from review r
-	right outer join film f on r.movieNo=f.filmNo
-)
+where filmNo between 1 and 3 
 group by filmNo, filmName
-
-order by savg desc
-
-
-
-
+order by filmNo asc
 
 --select nvl(AVG(star),0), filmNo,filmName from(select r.star, f.filmNo, f.filmName from review r right outer join film f on r.movieNo=f.filmNo) where filmNo between 1 and 3 group by filmNo, filmName order by filmNo asc
 

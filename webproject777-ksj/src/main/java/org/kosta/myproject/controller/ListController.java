@@ -23,14 +23,7 @@ public class ListController implements Controller {
 			pagination=new Pagination(FilmDAO.getInstance().getTotalPostCount(),Integer.parseInt(pageNo));
 		}
 		//list.jsp에서 페이징처리를 하기위해 Pagination객체를 공유한다.
-		String btnVal = request.getParameter("btnVal");
-		if(btnVal=="openDate") {
-			list = FilmDAO.getInstance().orderByFilmName(pagination);
-		}else if(btnVal=="filmName") {
-			list = FilmDAO.getInstance().orderByOpenDate(pagination);
-		}else {
-			list = FilmDAO.getInstance().findPostList(pagination);
-		}
+		list = FilmDAO.getInstance().findPostList(pagination);
 		request.setAttribute("pagination", pagination);
 		request.setAttribute("list", list);
 		request.setAttribute("url", "board/list.jsp");
