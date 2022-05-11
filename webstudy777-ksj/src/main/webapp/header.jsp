@@ -12,7 +12,7 @@
     <div class="container">
       <a href="index.jsp" class="navbar-brand d-flex align-items-center">
         
-        <img src="images/KostaCinemaLogo.png" width = 60% height =60%/>
+        <img src="images/KostaCinemaLogo2.png" width = 60% height =60%/>
       </a>
       
       <div class=float-left>
