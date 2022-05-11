@@ -9,6 +9,7 @@ margin-right:auto;
 width:100%;
 height:auto;
 }
+
 </style>
 
 
@@ -18,6 +19,7 @@ height:auto;
 <div class="col-sm-2 offset-sm-10" align="right">
 <button type="button" onclick="return bookingage()" class="btn btn-light btn-outline-success">예매하기</button>
 </div>
+
 <table class="table">
 <thead>
 <tr bgcolor="#DDDDDD">
@@ -43,19 +45,18 @@ height:auto;
 </tr>
 </tbody>
 </table>
-
 <%--영화 리뷰 --%>
 <table class="table table-bordered ">
 	<tbody>
 <c:forEach items="${list}" var="list">
 <tr style="background-color: #EEEEEE ">
-	<td width="100">${list.memberVO.id }</td>
-	<td width="100">	${list.star} </td>
-	<td>	${list.review} </td>
-	<td>
+	<td width="100" style="border: hidden;">${list.memberVO.id }</td>
+	<td width="100" style="border: hidden;">	${list.star} </td>
+	<td style="border: hidden;">	${list.review} </td>
+	<td width=150 style="border: hidden;">
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
-			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
+			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()"class="btn btn-light btn-outline-danger">
 		</c:when>
 	</c:choose>
 	</td>
