@@ -54,7 +54,7 @@ public class bookingController implements Controller {
 		request.setAttribute("movieName", movieName);
 		request.setAttribute("userName", userName);
 		request.setAttribute("url", "booking/booking-ok.jsp");
-		return "layout.jsp";		
+		return "layout.jsp";
 	}
 
 }

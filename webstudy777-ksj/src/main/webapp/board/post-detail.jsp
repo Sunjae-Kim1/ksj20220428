@@ -26,8 +26,8 @@
 	<%-- html pre tag : db에 저장된 글 형식 그대로 표현, tip : pre tag 라인은 행 변경 없이 한 라인으로 표현해야한다. --%>
 	<pre><font size="4">
 	${fvo.content }
-	${sessionScope.mvo.age}
-	${fvo.ageLimit}
+
+	${fvo.ageLimit}세 관람가
 	</font></pre>
 	</td>
 </tr>
