@@ -9,11 +9,11 @@
 </head>
 <body>
 <div><h4>예매 내역</h4></div>
-<div align="right"><a href="ListController.do">홈으로</a></div>
+<div align="right"><a href="ListController.do" class="btn btn-primary btn-outline">홈으로</a></div>
 <br><br>
 <table class="table table-bordered">
 	<thead>
-		<tr>
+		<tr bgcolor="#DDDDDD">
 			<th>예매번호</th>
 			<th>영화제목</th>
 			<th>상영시간</th>
@@ -23,7 +23,7 @@
 	</thead>
 	<tbody>
 	<c:forEach var="list" items="${bookList}" varStatus="status">
-		<tr>
+		<tr bgcolor="#FFFFFF">
 			
 				<td>${list.bookNo }</td>
 				<td>${list.timeTableVO.filmVO.filmName }</td>

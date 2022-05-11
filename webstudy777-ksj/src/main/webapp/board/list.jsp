@@ -13,9 +13,9 @@
 <div align="right">
 	<form action="OrderByListController.do">
 		<button type="button" name="avgStar"
-			onclick="location.href='ListController.do'">평점</button>
-		<button type="submit" name="filmName">제목</button>
-		<button type="submit" name="openDate">신작</button>
+			onclick="location.href='ListController.do'" class="btn btn-light my-2">평점</button>
+		<button type="submit" name="filmName" class="btn btn-secondary my-2">제목</button>
+		<button type="submit" name="openDate" class="btn btn-dark my-2">신작</button>
 	</form>
 </div>
 

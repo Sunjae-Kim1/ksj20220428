@@ -6,11 +6,11 @@
 <input type="hidden" id="idlist" value="${idlist}">
 
 <div class="col-sm-2 offset-sm-10" align="right">
-<button type="button" onclick="return bookingage()">예매하기</button>
+<button type="button" onclick="return bookingage()" class="btn btn-light btn-outline-success">예매하기</button>
 </div>
 <table class="table">
 <thead>
-<tr>
+<tr bgcolor="#DDDDDD">
 	<td>제목 : ${fvo.filmName } </td>
 	<td>개봉일 : ${fvo.openDate } </td>
 	<td>제작년도 :  ${fvo.produceYear }</td>
@@ -18,7 +18,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr bgcolor="#FFFFFF">
 	<td>
 		<img src="images/${fvo.filmNO}.gif">
 	</td>
