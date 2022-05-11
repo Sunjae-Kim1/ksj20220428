@@ -14,6 +14,7 @@ height:auto;
 
 <input type="hidden" id="idlist" value="${idlist}">
 
+
 <div class="col-sm-2 offset-sm-10" align="right">
 <button type="button" onclick="return bookingage()" class="btn btn-light btn-outline-success">예매하기</button>
 </div>
@@ -36,7 +37,7 @@ height:auto;
 	<pre><font size="4">
 	${fvo.content }
 
-	시청연령 : ${fvo.ageLimit}세 관람가
+	${fvo.ageLimit}세 관람가
 	</font></pre>
 	</td>
 </tr>
@@ -51,10 +52,10 @@ height:auto;
 	<td width="100">${list.memberVO.id }</td>
 	<td width="100">	${list.star} </td>
 	<td>	${list.review} </td>
-	<td width="150">
+	<td>
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
-			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()" class="btn btn-danger">			
+			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
 		</c:when>
 	</c:choose>
 	</td>
@@ -75,7 +76,7 @@ height:auto;
 </select>
 
 <%--영화 리뷰 작성 --%>
-<form method="post" action="WritePostController.do">
+<form method="post" action="WritePostController.do?filmNO=${fvo.filmNO}">
 <textarea rows="3" class="form-control" name="review" placeholder="영화 리뷰" required="required"></textarea>
 		<div class="text-center">
 			<button type="submit" class="btn btn-success" onclick="return postreview()">확인</button>
@@ -117,8 +118,9 @@ height:auto;
 	}
 	
 	function deletereview(){
+		alert(${fvo.filmNO});
 		if (confirm("리뷰를 삭제하시겠습니까?")) {
-			location.href="DeleteReviewController.do";
+			location.href="DeleteReviewController.do?filmNO=${fvo.filmNO}";
 	    } else {
 	        return false;
 	    }
