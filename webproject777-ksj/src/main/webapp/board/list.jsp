@@ -34,14 +34,29 @@
 
 
 <div align="right">
-	<form action="OrderByListController.do">
-		<button type="button" name="avgStar"
-			onclick="location.href='ListController.do'" class="btn btn-light my-2">평점</button>
-		<button type="submit" name="filmName" class="btn btn-secondary my-2">제목</button>
-		<button type="submit" name="openDate" class="btn btn-dark my-2">신작</button>
-	</form>
+<select name="sort" id="sort"> 
+<option value="no">--정렬 방식을 선택해 주세요.--</option> 
+<option value="avgStar">avgStar</option> 
+<option value="filmName">filmName</option> 
+<option value="openDate">openDate</option> 
+</select>
+<button type="submit" onclick="return sort()" >정렬하기</button>
 </div>
-
+<form id="sorting" action="OrderByListController.do" method="post">
+	<input type="hidden" name="sort1" value="">
+	<input type="hidden" name="sorton" value="on">
+</form>
+<script>
+	function sort(){
+		var sort = $("#sort").val();
+		if(sort=="no"){
+			alert("정렬 방식을 선택해 주세요.");
+			return false;
+		}
+		$('input[name=sort1]').attr('value',sort);
+    document.getElementById("sorting").submit();
+}
+</script>
 <table class="table table-bordered table-hover boardlist">
 	<tbody>
 	
@@ -80,23 +95,23 @@ ${pagination.endPageOfPageGroup}
 <ul class="pagination justify-content-center" style="margin: 20px 0">
 	<c:if test="${pagination.previousPageGroup }">
 		<li class="page-item"><a class="page-link"
-			href="ListController.do?pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
+			href="OrderByListController.do?pageNo=${pagination.startPageOfPageGroup-1}">Previous</a></li>
 	</c:if>
 	<c:forEach begin="${pagination.startPageOfPageGroup}"
 		end="${pagination.endPageOfPageGroup}" var="page">
 		<c:choose>
 			<c:when test="${page==pagination.nowPage }">
 				<li class="page-item active"><a class="page-link"
-					href="ListController.do?pageNo=${page}">${page}</a></li>
+					href="OrderByListController.do?pageNo=${page}">${page}</a></li>
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="ListController.do?pageNo=${page}">${page}</a></li>
+					href="OrderByListController.do?pageNo=${page}">${page}</a></li>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:if test="${pagination.nextPageGroup }">
 		<li class="page-item"><a class="page-link"
-			href="ListController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
+			href="OrderByListController.do?pageNo=${pagination.endPageOfPageGroup+1}">Next</a></li>
 	</c:if>
 </ul>
