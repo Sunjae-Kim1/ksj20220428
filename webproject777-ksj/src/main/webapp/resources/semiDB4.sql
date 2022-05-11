@@ -120,8 +120,6 @@ insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 12:00:
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 14:45:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220516 17:10:00', 'yymmdd hh24:mi:ss'));
 
-insert into timetable values (999, 1, sysdate);
-
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 13:10:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 16:30:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 2, to_date('20220516 20:40:00', 'yymmdd hh24:mi:ss'));
@@ -131,7 +129,46 @@ insert into timetable values (timetable_seq.nextval, 1, to_date('20220518 22:05:
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220519 16:30:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220520 09:00:00', 'yymmdd hh24:mi:ss'));
 insert into timetable values (timetable_seq.nextval, 1, to_date('20220521 23:55:00', 'yymmdd hh24:mi:ss'));
+----------------
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220521 23:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220521 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220522 23:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220522 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220523 23:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220523 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220524 23:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 3, to_date('20220524 13:55:00', 'yymmdd hh24:mi:ss'));
 
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220524 20:25:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220524 14:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220525 20:25:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220525 14:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220526 20:25:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 4, to_date('20220526 14:55:00', 'yymmdd hh24:mi:ss'));
+
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220520 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220520 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220520 17:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220521 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220521 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 5, to_date('20220521 17:55:00', 'yymmdd hh24:mi:ss'));
+
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220515 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220515 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220516 17:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220516 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220517 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 6, to_date('20220517 17:55:00', 'yymmdd hh24:mi:ss'));
+
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220529 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220529 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220529 17:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220530 06:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220530 13:55:00', 'yymmdd hh24:mi:ss'));
+insert into timetable values (timetable_seq.nextval, 7, to_date('20220530 17:55:00', 'yymmdd hh24:mi:ss'));
+
+
+---------------
 select to_char(showtime, 'hh24:mi:ss')
 from TIMETABLE
 where to_char(showtime, 'yy-mm-dd')='22-05-16' and filmNo='2'
