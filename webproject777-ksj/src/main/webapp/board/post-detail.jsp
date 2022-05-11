@@ -6,8 +6,7 @@
 .table{
 margin-left:auto;
 margin-right:auto;
-width:100%;
-height:auto;
+}
 }
 
 </style>
@@ -20,7 +19,7 @@ height:auto;
 <button type="button" onclick="return bookingage()" class="btn btn-light btn-outline-success">예매하기</button>
 </div>
 
-<table class="table">
+<table class="table" style="overflow:auto;">
 <thead>
 <tr bgcolor="#DDDDDD">
 	<td>제목 : ${fvo.filmName } </td>
@@ -34,12 +33,19 @@ height:auto;
 	<td>
 		<img src="images/${fvo.filmNO}.gif" width=300px;>
 	</td>
+
 	<td colspan="5">
 	<%-- html pre tag : db에 저장된 글 형식 그대로 표현, tip : pre tag 라인은 행 변경 없이 한 라인으로 표현해야한다. --%>
 	<pre><font size="4">
-	${fvo.content }
-
-	${fvo.ageLimit}세 관람가
+<span class="box">${fvo.content }</span>
+<c:choose>
+<c:when test = "${fvo.ageLimit>=18}">
+<span style="color:red"><strong>연령제한:${fvo.ageLimit}세 관람가</strong></span>
+</c:when>
+<c:otherwise>
+<span style="color:blue"><strong>연령제한:${fvo.ageLimit}세 관람가</strong></span>
+</c:otherwise>
+</c:choose>	
 	</font></pre>
 	</td>
 </tr>
