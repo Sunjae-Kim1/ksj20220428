@@ -21,14 +21,15 @@ public class OrderByListController implements Controller {
 		String filmName = "filmName";
 		String avgStar = "avgStar";
 		if(session.getAttribute("sorting")==null) {
-			if(sort==null) {
+			if(sorton!=null) {
+				session.setAttribute("sorting", sort);
+			}else{
 				session.setAttribute("sorting", avgStar);
 			}
-		}else{
-			if(sorton!=null) {
+		}
+		if(sorton!=null) {
 			session.setAttribute("sorting", sort);
-			}
-		}	
+		}
 		String sort1 =(String) session.getAttribute("sorting");
 		ArrayList<ReviewVO> list = new ArrayList<ReviewVO>();
 		//클라이언트로부터 페이지번호를 전달받는다. Pagination(dao.getTotalPostCount(),nowPage);
