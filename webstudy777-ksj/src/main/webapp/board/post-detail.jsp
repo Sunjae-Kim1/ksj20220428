@@ -51,7 +51,7 @@ height:auto;
 	<td width="100">${list.memberVO.id }</td>
 	<td width="100">	${list.star} </td>
 	<td>	${list.review} </td>
-	<td>
+	<td width=150px;>
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
 			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
@@ -114,5 +114,13 @@ height:auto;
 			alert("별점을 추가해 주세요.");
 			return false;
 		}
+	}
+	
+	function deletereview(){
+		if (confirm("리뷰를 삭제하시겠습니까?")) {
+			location.href="DeleteReviewController.do";
+	    } else {
+	        return false;
+	    }
 	}
 </script>
