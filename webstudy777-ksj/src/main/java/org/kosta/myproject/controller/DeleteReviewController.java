@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 public class DeleteReviewController implements Controller
 {
     public String execute(final HttpServletRequest request, final HttpServletResponse response) throws Exception {
-        final HttpSession session = request.getSession(false);
-        final MemberVO vo = (MemberVO)session.getAttribute("mvo");
-        final String id = vo.getId();
+        HttpSession session = request.getSession(false);
+        MemberVO vo = (MemberVO)session.getAttribute("mvo");
+        String id = vo.getId();
         ReviewDAO.getInstance().DeleteReview(id);
         request.setAttribute("url", (Object)"board/post-detail.jsp");
         return "layout.jsp";

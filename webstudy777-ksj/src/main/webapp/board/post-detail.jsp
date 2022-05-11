@@ -53,7 +53,7 @@ height:auto;
 	<td>	${list.review} </td>
 	<c:choose>
 		<c:when test="${list.memberVO.id==sessionScope.mvo.id}">
-			<input type="button" value="삭제하기" onclick="return deletereview()">
+			<input type="button" value="리뷰 삭제하기" onclick="return deletereview()">
 		</c:when>
 	</c:choose>
 </tr>			
