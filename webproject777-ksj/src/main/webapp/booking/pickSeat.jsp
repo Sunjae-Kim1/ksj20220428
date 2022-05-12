@@ -129,8 +129,6 @@
  		var seats = $('input[name=seats1]').val();
  		var personseat = $("#person").val();
  		seatArray = seats.split(',');
- 		alert(seatArray.length);
- 		alert(personseat);
  		if(seatArray.length!=personseat){
  			alert("인원수가 맞지 않습니다.");
  			return false;
