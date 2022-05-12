@@ -32,7 +32,7 @@
 	text-align: center;
 	cursor: pointer;
 	text-transform: uppercase;
-	background: #d03d3d;
+	background: #f0b537;
 	-webkit-animation: main .25s;
 	-moz-animation: main .25s;
 	animation: main .25s;
@@ -45,7 +45,7 @@
 	bottom: -20px;
 	z-index: -1;
 	border: 20px solid transparent;
-	border-right-color: #400404;
+	border-right-color: #403804;
 	-webkit-animation: edge .5s;
 	-moz-animation: edge .5s;
 	animation: edge .5s;
@@ -53,7 +53,7 @@
 .ribbon i:nth-child(2) {
 	left:auto;
 	right:-20px;
-	border-left-color: #400404;
+	border-left-color: #403804;
 	border-right-color:transparent;
 }
 .ribbon i:nth-child(3), .ribbon i:last-child {
@@ -61,7 +61,7 @@
 	width: 50px;
 	bottom: -20px;
 	left: -40px;
-	border: 30px solid #c01d1d;
+	border: 30px solid #c0971d;
 	border-left-color: transparent;
 	
 	-webkit-animation: backRibbon .6ms;
@@ -77,7 +77,7 @@
 	left: auto;
 	right: -40px;
 	border-right-color: transparent;
-	border-left-color: #c01d1d;
+	border-left-color: #c0971d;
 	/* 우측 리본 : 우측에서 좌측으로 scale 이 커지도록 한다. */
 	-webkit-transform-origin: 0 0;
 	-moz-transform-origin: 0 0;
@@ -155,11 +155,11 @@
 <div align="right">
 <select name="sort" id="sort"> 
 <option value="no">--정렬 방식을 선택해 주세요.--</option> 
-<option value="avgStar">avgStar</option> 
-<option value="filmName">filmName</option> 
-<option value="openDate">openDate</option> 
+<option value="avgStar">평점순</option> 
+<option value="filmName">제목순</option> 
+<option value="openDate">신작순</option> 
 </select>
-<button type="submit" onclick="return sort()" >정렬하기</button>
+<button type="submit" onclick="return sort()" class="btn btn-primary btn-outline-dark" >정렬하기</button>
 </div>
 <form id="sorting" action="OrderByListController.do" method="post">
 	<input type="hidden" name="sort1" value="">

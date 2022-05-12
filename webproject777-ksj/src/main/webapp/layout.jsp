@@ -17,7 +17,7 @@
   <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body style="background-image: url('images/cinema.jpg') ; background-attachment: fixed;">
+<body style="background-image: url('images/cinema2.jpg') ; background-attachment: fixed;background-size: cover;">
 
 			<c:import url="header.jsp"></c:import>
 	<div class="row">
