@@ -1,9 +1,6 @@
 package test;
 
 import java.sql.SQLException;
-
-import org.kosta.myproject.model.FilmDAO;
-import org.kosta.myproject.model.FilmVO;
 import org.kosta.myproject.model.TimeTableDAO;
 
 public class testDAO {
